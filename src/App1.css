@@ -1,0 +1,704 @@
+body {
+  font-family: "Jost";
+  color: #444444;
+}
+
+a {
+  color: #2487ce;
+  text-decoration: none!important;
+}
+
+a:hover {
+  color: #469fdf;
+  text-decoration: none!important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Jost";
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #2487ce;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #3e9bdd;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #fff;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #2487ce;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  transition: all 0.5s;
+  background: #fff;
+  z-index: 997;
+  padding: 15px 0;
+  border-bottom: 1px solid #fff;
+}
+
+#header.header-scrolled {
+  border-color: #fff;
+  box-shadow: 0px 2px 15px rgba(18, 66, 101, 0.08);
+}
+
+.logo img {
+  max-height: 40px;
+}
+
+@media (max-width: 992px) {
+  #header .logo {
+    font-size: 28px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+.navbar {
+  padding: 15px 0!important;
+}
+
+.nav-link {
+  font-size: 19px!important;
+  padding: 10px 0px 10px 30px!important;
+}
+
+.navbar .getstarted,
+.navbar .getstarted:focus {
+  background: #2487ce;
+  padding: 8px 20px!important;
+  margin-left: 30px!important;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar .getstarted:hover,
+.navbar .getstarted:focus:hover {
+  color: #fff;
+  background: #3194db;
+}
+
+.navbar .getstarted2,
+.navbar .getstarted2:focus {
+  background: #fff;
+  border: 1px solid #010851;
+  padding: 8px 20px!important;
+  margin-left: 30px!important;
+  border-radius: 4px;
+  color: #010851;
+  text-decoration: none;
+}
+
+.my-float-right {
+  float: right;
+}
+
+@media only screen and (max-width: 786px) {
+  .navbar .getstarted,
+.navbar .getstarted:focus {
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+
+.navbar .getstarted2,
+.navbar .getstarted2:focus {
+  margin-left: 0px;
+}
+.my-float-right {
+  float: inherit;
+}
+}
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+
+section {
+  padding: 80px 0 30px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 786px) {
+  section {
+    padding: 10px 0 30px;
+  }
+}
+
+
+.section-bg {
+  background-color: #f8fbfe;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: #124265;
+}
+
+.section-title p {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #919191;
+}
+
+.mtb-4 {
+  margin: 10px 0 50px;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+/* page-style */
+
+.page-style  h2 {
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.page-style h4 {
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0.035em;
+  color: #000000;
+}
+
+
+.page-box {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.096);
+  border-radius: 20px;
+  padding: 30px 40px;
+  margin-bottom: 40px;
+}
+.page-box h5 {
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.035em;
+  text-decoration-line: underline;
+  color: #000000;
+}
+
+.m-l-r-15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.text-left{
+  text-align: left!important;
+}
+
+/* page-style2  */
+
+.page-style2  h2 {
+  font-weight: 500;
+  font-size: 32px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.icon-box {
+  text-align: center;
+  margin: 15px 0px;
+}
+
+.icon-box h4{
+  font-weight: 500;
+  font-Size: 20px;
+  margin-top: 20px;
+}
+
+.Quizzes-q {
+  margin-bottom: 0px;
+}
+.Quizzes-q img{
+  margin: 0px 5px;
+  width: 15px;
+}
+.fs-14{
+font-size: 14px;
+}
+.accordion-button {
+  padding: 1rem 1rem!important;
+}
+.accordion-body {
+  padding: 1rem 1rem!important;
+}
+.Quizzes-q h5 {
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.035em;
+  text-decoration-line: blink;
+  color: #000000;
+}
+.Quizzes-q spam {
+  font-size: 19px;
+}
+.add-quizzes {
+  text-align: center;
+}
+
+.add-quizzes img {
+  width: 40px;
+}
+.add-quizzes h5{
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.035em;
+  text-decoration-line: blink;
+  color: #000000;
+  margin-top: 15px;
+}
+.delete-box {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 50px rgb(0 0 0 / 10%);
+  border-radius: 20px;
+  padding: 30px 40px;
+  margin-bottom: 40px;
+  height: 130px;
+}
+
+.delete-box img {
+  height: 35px;
+  margin-bottom: 20px;
+}
+/*--------------------------------------------------------------
+# services-box
+--------------------------------------------------------------*/
+.services-box {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 50px rgb(0 0 0 / 14%);
+  border-radius: 48px;
+  text-align: center;
+  padding: 60px 40px;
+  margin-bottom: 80px;
+}
+
+.services-box h2{
+font-weight: 700;
+font-size: 40px;
+text-align: center;
+color: #000000;
+margin-bottom: 20px;
+}
+
+.services-box h4{
+  font-weight: 400;
+font-size: 22px;
+letter-spacing: 0.035em;
+text-decoration-line: underline;
+color: #000000;
+}
+
+.services-box p{
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.035em;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.modal-dialog {
+  max-width: 95%!important;
+}
+.clos {
+  position: absolute;
+  right: 3em;
+  top: 2em;
+  cursor: pointer;
+}
+
+.clos img {
+  height: 20px;
+}
+
+.modal-popup h3{
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;  
+  color: #000000;
+}
+
+.modal-popup p{
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+}
+
+.modal-popup h4{
+  font-weight: 500;
+  font-size: 25px;  
+  color: #000000;
+}
+
+.form-control {
+  background: #FFFFFF;
+    appearance: auto!important;
+    border: 1px solid #dee2e6!important;
+    border-radius: 0!important;
+    padding: 0.7rem 0.75rem!important;
+
+}
+
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%)!important;
+}
+
+.btn-web {
+  background: #373737;
+    border-radius: 8px;
+    padding: 5px 5em;
+    color: #fff;
+    border: 1px solid #373737;
+    font-size: 18px;
+}
+.back-button {  
+  border-radius: 10px;
+  padding: 5px 1.5em;
+  font-size: 15px;
+  color: #010851;
+  border: 1px solid #010851;
+  background: #fff;
+}
+.back-button:hover {
+  color: #fff;
+  border: 1px solid #010851;
+  background: #010851;
+}
+
+.float-right {
+  float: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .clos {
+    position: absolute;
+    right: 2em;
+    top: 1em;
+    cursor: pointer;
+  }
+  .back-button {
+    font-size: 18px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+}
+
+.forgot-link {
+  color: #000;
+  text-align: right;
+}
+
+.Subscription-box {
+  border: 2.14368px solid #000000;
+    padding: 35px;
+    line-height: 40px;
+    font-weight: 600;
+    color: #484848;
+}
+.modal-p-style {
+  font-weight: 400;
+  font-size: 17px!important;
+  color: #000000;
+  text-align: left;
+}
+.img-modal img{
+  max-width: 450px;
+}
+
+.qus-box {
+  border: 1px dashed #b2b1b1;
+  padding: 40px 50px;
+  margin-bottom: 50px;
+}
+
+
+.text-right{
+  text-align: right!important;
+}
+
+.modal-footer {
+  display: block!important;
+  background: #F4F4F4!important;
+}
+
+.qus-icon {
+  position: relative;
+}
+
+.qus-icon img{
+  position: absolute;
+  top: 20px;
+}
+
+.Quizzes-ans img {
+  margin: 0px 5px;
+  width: 15px;
+}
+.create-questions {
+  border: 1px solid #dee2e6!important;
+  border-radius: 0!important;
+  padding: 1rem 1.75rem!important;
+  margin-bottom: 15px;
+}
+.add-quizzes-ans spam {
+  font-size: 17px;
+}
+
+.add-q-control {
+  width: 100%!important;
+  display: inherit!important;
+}
+
+.add-quizzes-ans {
+  margin-bottom: 20px;
+}
+
+.add-quizzes-ans-option {
+  margin-left: 6.2em;
+  margin-bottom: 10px;
+}
+.add-quizzes-ans-option spam {
+  margin-left: 15px;
+  font-size: 17px;
+}
+
+.Quizzes-new-ans-add img {
+  margin: 0px 5px;
+  width: 25px;
+}
+
+.Quizzes-new-ans-add spam {
+  margin-left: 15px;
+  font-size: 17px;
+}
+.desgin-option {
+  margin-left: 5.6em;
+  margin-bottom: 10px;
+}
+.possibility-q {
+  margin-bottom: 20px;
+}
+
+.possibility-ans {
+  margin-bottom: 28px;
+  margin-top: 20px;
+}
+.possibility-option {
+  margin-bottom: 15px;
+}
+.possibility-q img {
+  margin: 0px 7px;
+  width: 20px;
+}
+
+@media only screen and (max-width: 786px) {
+  .add-quizzes-ans spam {
+    margin-left: 0px;
+    font-size: 17px;
+}
+
+.Quizzes-ans {
+  margin-left: 0em;
+}
+.add-quizzes-ans-option {
+  margin-left: 0.2em;
+}
+}
+.accordion-item {
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6!important;
+}
+.accordion-button:focus {
+  border-color: #86b7fe7a!important;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%)!important;
+}
+.accordion-item:first-of-type {
+  border-top-left-radius: 0rem!important;
+  border-top-right-radius: 0rem!important;
+}
+
+.font-size-19{
+  font-size: 19px!important;
+}
+.drag-area {
+  height: 250px;
+  border: 3px dashed #e0eafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px auto;
+  position: relative;
+}
+.drag-area input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+
+.filter-box {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.14);
+  border-radius: 24px;
+  padding: 20px 20px;
+  margin-bottom: 80px;
+}
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+Footer {
+  background: #010851;
+}
+
+.footer-logo img{
+  height: 70px;
+}
+
+Footer .footer-menu a {
+  font-size: 19px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 4;
+  text-decoration: none;
+}
+
+Footer .footer-menu  a:hover {
+  color: rgb(202, 199, 199);
+  text-decoration: none;
+}
+
+
+.searchWrapper {
+  border: 1px solid #dee2e6!important;
+  padding: 1rem 0.75rem!important;
+}
+.management-box {
+  border: 1px dashed #c2c0c0;
+  padding: 3em 10em;
+}
+.react-tabs__tab-list {
+  border-bottom: 1px solid #fff!important;
+}
+.react-tabs__tab--selected {
+  border-color: #fff!important;
+}
+.react-tabs__tab--selected h5 {
+  font-weight: 600;
+}
+.react-tabs__tab {
+  padding: 6px 100px!important;
+}
+@media only screen and (max-width: 786px) {
+  .react-tabs__tab {
+    padding: 6px 10px!important;
+  }
+  .footer-logo {
+    text-align: center;
+}
+}
