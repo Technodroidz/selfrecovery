@@ -1,14 +1,8 @@
+import { ErrorMessage, Field } from "formik";
 import React from "react";
-const QuestionComponent = ({ index = 0, answer = {}, handleAnswerChange,addOption,deleteOption }) => {
+const QuestionComponent = ({ index = 0, values,setFieldValue, handleAnswerChange,addOption,deleteOption }) => {
 return (
-<div key={`question-${index}`}>
    <div className="row justify-content-center">
-      {/* <label>Answer {index + 1}</label> */}
-      {/* <input
-         type="text"
-         value={answer}
-         onChange={(event) => handleAnswerChange(event, index)}
-      /> */}
       <div className="col-md-12 mt-4">
          <div 
             //   id="Quizzes-q-1" 
@@ -38,20 +32,19 @@ return (
                      <div className="row align-items-center">
                         <div className="col-md-2 question_area">
                            <label for="question" className="fs-14">
-                           Question {index + 1}:
+                           Question {index+1}:
                            </label>
                         </div>
                         <div className="col-md-10  question_area">
-                           <input
+                           <Field
+                           as="input"
                            type="text"
-                           // id={`question-${index + 1}`}
-                           // name="questions[]"
+                           name={`answers[${index}].title`}
                            className="form-control"
-                           value={answer.title}
-                           onChange={(event) =>
-                           handleAnswerChange(index, "title", event.target.value)
-                           }
                            placeholder="How much meat do you like on your pizza?"
+                           />
+                           <ErrorMessage name={`answers[${index}].title`} component="div"
+                           className="text-danger"
                            />
                         </div>
                      </div>
@@ -89,20 +82,16 @@ return (
                                  </label>
                               </div>
                               <div className="col-md-10 answer_area">
-                                 <input
+                                 <Field
+                                 as="input"
                                  type="text"
-                                 // id={`answer-${index + 1}`}
+                                 name={`answers[${index}].sampleAnswer`}
                                  className="form-control"
-                                 value={answer.sampleAnswer}
-                                 onChange={(event) =>
-                                 handleAnswerChange(
-                                 index,
-                                 "sampleAnswer",
-                                 event.target.value
-                                 )
-                                 }
                                  placeholder="Plenty of Meat"
                                  />
+                              <ErrorMessage name={`answers[${index}].sampleAnswer`} component="div" 
+                              className="text-danger"
+                              />
                               </div>
                            </div>
                         </div>
@@ -116,118 +105,114 @@ return (
                            <b className="fs-14">Radio Button: </b>
                         </div>
                         <div className="col-md-9 col-12 selectbutton">
-                           <select
+                           <Field
+                              as="select"
                               className="form-control"
-                              value={answer.type}
-                              onChange={(event) =>
-                              handleAnswerChange(index, "type", event.target.value)
-                              }
+                              name={`answers[${index}].type`}
                               >
+                              <option value="">Select Radio Button</option>
                               <option value={1}>Radio Button</option>
                               <option value={2}>Check Box</option>
                               <option value={3}>Text Box</option>
                               <option value={4}>Paragraph</option>
                               <option value={5}>Drop Down</option>
                               <option value={6}>Scale</option>
-                           </select>
+                           </Field>
+                           <ErrorMessage name={`answers[${index}].type`} component="div"
+                           className="text-danger"
+                           />
                         </div>
                      </div>
                   </div>
                   <div className="answer-value-score mb-4">
                      <div className="add-quizzes-ans-option">
                         <div className="row align-items-center">
-                           {/* 
-                           <form>
-                              */}
-                              {answer?.options?.length > 0 && answer.options.map((option, optionIndex) => {
-                              return (
                               <div
                                  className="mb-3 row align-items-center"
-                                 key={`option-${optionIndex}`}
-                                 //   id="answers"
                                  >
-                                 <div className="col-md-8 col-12 mb-2">
-                                    <label>
-                                    <b className="fs-14">Answer :</b>
-                                    </label>
-                                    <input
-                                    type="text"
-                                    //   name="answervalue"
-                                    placeholder="Meat"
-                                    class="form-control mt-2"
-                                    value={option.title}
-                                    onChange={(event) => {
-                                    handleAnswerChange(
-                                    index,
-                                    "options",
-                                    event.target.value,
-                                    optionIndex,
-                                    'title'
-                                    );
-                                    }}
-                                    />
-                                 </div>
-                                 <div className="col-md-3 col-9 mb-2">
-                                    <label>
-                                    <b className="fs-14">Score: </b>
-                                    </label>
-                                    <select
-                                       className="form-control mt-2"
-                                       name="valueselect"
-                                       value={option.score}
-                                       onChange={(event) =>
-                                       {
-                                       handleAnswerChange(
-                                       index,
-                                       "options",
-                                       event.target.value,
-                                       optionIndex,
-                                       'score'
-                                       );
-                                       }}
-                                       >
-                                       <option value='-2'>-2</option>
-                                       <option value='1'>1</option>
-                                       <option value='2'>2</option>
-                                       <option value='3'>3</option>
-                                       <option value='4'>4</option>
-                                    </select>
-                                 </div>
-                                 <div className="col-md-1 col-1 d-flex">
-                                    {/* 
-                                    <div className="answer-value-delete">
-                                       <Link to="#">
-                                       <i className="fa fa-trash"></i>
-                                       </Link>
-                                    </div>
-                                    */}
-                                    <div className="col-sm text-end">
-                                       <div className="answer-value-delete">
-                                          <button type="button" className="deleteAns" onClick={()=>deleteOption(index,optionIndex)}>
-                                          {" "}
-                                          <i className="fa fa-trash"></i>
-                                          </button>
+                                 {
+                                    values.answers[index].options.map((option, index2) => (
+                                       <>
+                                            <div className="col-md-8 col-12 mb-2">
+                                          <label>
+                                          <b className="fs-14">Answer :</b>
+                                          </label>
+                                          <Field
+                                          as="input"
+                                          type="text"
+                                          name={`answers[${index}].options[${index2}].title`}
+                                          placeholder="Meat"
+                                          class="form-control mt-2"
+                                          />
+                                          <ErrorMessage name={`answers[${index}].options[${index2}].title`} component="div"
+                                          className="text-danger"
+                                          />
                                        </div>
-                                    </div>
-                                 </div>
+                                       <div className="col-md-3 col-9 mb-2">
+                                          <label>
+                                          <b className="fs-14">Score: </b>
+                                          </label>
+                                          <Field
+                                             as="select"
+                                             className="form-control mt-2"
+                                             name={`answers[${index}].options[${index2}].score`}
+                                             >
+                                             <option value="">Select Score</option>
+                                             <option value='1'>1</option>
+                                             <option value='2'>2</option>
+                                             <option value='3'>3</option>
+                                             <option value='4'>4</option>
+                                             <option value='5'>5</option>
+                                             <option value='6'>6</option>
+                                             <option value='7'>7</option>
+                                             <option value='8'>8</option>
+                                             <option value='9'>9</option>
+                                             <option value='10'>10</option>
+                                          </Field>
+                                          <ErrorMessage name={`answers[${index}].options[${index2}].score`} component="div"
+                                          className="text-danger"
+                                          />
+                                       </div>
+                                       {
+                                          index2 > 0 &&
+                                          <div className="col-md-1 col-3 mb-2">
+                                             <img
+                                             onClick={()=>{
+                                                values.answers[index].options.splice(index2, 1)
+                                                setFieldValue('answers', values.answers)
+                                             }}
+                                                src="../assets/img/quizzes-delete.png"
+                                                alt="quizzes"
+                                                className="img-fluid"
+                                                />
+                                          </div>
+                                       }
+                                       </>
+                                    ))
+                                 }
                               </div>
-                              );
-                              })}
+
+                           {
                               <div className="add-quizzes-ans-option text-right" >
-                                 <spam onClick={()=> { addOption(  index );}}>
+                                 <spam onClick={()=> {
+                                    values.answers[index].options.push({
+                                       title: '',
+                                       score: -2
+                                    })
+                                    setFieldValue('answers', values.answers)
+                                 }}>
                                     {" "}
                                     <b>Add Value (Values help with quiz results)</b>
                                     <img
+
                                        src="../assets/img/add-filled.png"
                                        alt="quizzes"
                                        className="img-fluid"
-                                       // id="addAnswers"
                                        />
                                  </spam>
                               </div>
-                              {/* 
-                           </form>
-                           */}
+                           }
+                              
                         </div>
                      </div>
                   </div>
@@ -236,7 +221,6 @@ return (
          </div>
       </div>
    </div>
-</div>
 );
 };
 export default QuestionComponent;

@@ -7,13 +7,9 @@ import QuestionComponent from "./QuestionComponent";
 import Header from '../front/Header';
 import Footer from '../front/Footer';
 import { Button } from "react-bootstrap";
+import { Form, Formik, useFormik } from "formik";
+import { QuestionValidationSchema } from "../utils/validations/QuestionValidationSchema";
 
-const initialQuestionData = {
-  title: "",
-  sampleAnswer: "",
-  type: 1,
-  options: [{ title: "", score: '' }],
-};
 
 export const Questions = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -58,63 +54,10 @@ export const Questions = () => {
   // Declare a new state variable, which we'll call "form fields"
 
   const [numAnswers, setNumAnswers] = useState(1);
-  const [answers, setAnswers] = useState([initialQuestionData]);
 
-  const handleAddAnswer = () => {
-    //  setNumAnswers(numAnswers + 1);
-    //  setAnswers([...answers, ""]);
-    setAnswers([...answers, JSON.parse(JSON.stringify(initialQuestionData))]);
-  };
-  const handleAnswerChange = (
-    index,
-    property,
-    value,
-    optionIndex,
-    optionProperty
-  ) => {
-    let allAnswers = [...answers];
 
-    if (optionIndex === 0 || optionIndex) {
-      allAnswers[index][property][optionIndex][optionProperty] = value;
-      setAnswers(allAnswers);
-    } else {
-      debugger;
-      allAnswers[index][property] = value;
-      setAnswers(allAnswers);
-    }
-  };
-  const addOption = (index) => {
-     let allAnswers = [...answers]
-     let options = allAnswers[index]['options']
-     options.push({title:'New Option',value:'-2'})
-     setAnswers(allAnswers)
-  }
-
-  const deleteOption = (index,optionIndex) => {
-   let allAnswers = [...answers]
-   let options = allAnswers[index]['options']
-   options.splice(optionIndex,1)
-   setAnswers(allAnswers)
-
-}
-
-  const renderAnswerFields = () => {
-    return answers.map((answer, index) => {
-      return (
-        <QuestionComponent
-          answer={answer}
-          index={index}
-          handleAnswerChange={handleAnswerChange}
-          addOption={addOption}
-          deleteOption={deleteOption}
-        />
-      );
-    });
-  };
-
-  const submitquestion = () => {
-   console.log(answers);
-
+  const submitquestion = (values) => {
+   console.log(values.answers);
   } 
 
   return (
@@ -215,28 +158,102 @@ export const Questions = () => {
               <div className="col-md-12 page-box">
                 <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
-                    <div>
-                      {/* {renderAnswerFields()} */}
-                      {answers.map((answer, index) => {
+                    <Formik
+                      initialValues={{
+                        answers:[
+                          {
+                            title: "",
+                            sampleAnswer: "",
+                            type: "",
+                            options: [{
+                              title: "",
+                              score: "",
+                            }],
+                          },
+                        ]
+                      }}
+                      onSubmit={submitquestion}
+                      validationSchema={QuestionValidationSchema}
+                    >
+                      {({
+                        values,
+                        setFieldValue,
+                        isSubmitting,
+                        dirty,
+                        isValid
+                      }) => {
                         return (
-                          <QuestionComponent
-                            answer={answer}
-                            key={index}
-                            index={index}
-                            handleAnswerChange={handleAnswerChange}
-                            addOption={addOption}
-                            deleteOption={deleteOption}
-                          />
-                        );
-                      })}
+                        <Form>
+                    <div>
+                      {
+                        Array.from({length:numAnswers}).map((_,index) => {
+                          return (
+                            <>
+                            <QuestionComponent
+                              key={index}
+                              index={index}
+                              values = {values}
+                              setFieldValue = {setFieldValue}
+                            />
+
+                            {
+                              index !== 0 && (
+                                <div className="row justify-content-center mt-4">
+                                  <div className="col-md-6 text-center">
+                                    <button
+                                      type="submit"
+                                      onClick={() => {
+                                        setNumAnswers(numAnswers - 1);
+                                        values.answers.splice(index, 1);
+                                        setFieldValue("answers", values.answers);
+                                      }
+                                    }
+                                      className="btn-web"
+                                    >
+                                      <img
+                                        src="../assets/img/fluent_delete-24-filled.png"
+                                        alt="down"
+                                        style={{ width: "20px" }}
+                                        className="img-fluid"
+                                      />{" "}
+                                      Delete Question
+                                    </button>
+                                  </div>
+                                </div>
+                              )
+                            }
+                            </>
+                            
+                          );
+                        })
+                      }
                       <div className="mt-5 text-center">
-                        <button className="btn btn-success" onClick={submitquestion}>Save Questions</button>
+                        <button 
+                        className="btn btn-success" 
+                        type="submit"
+                        disabled={isSubmitting || !dirty || !isValid}
+                        >Save Questions</button>
                       </div>
+                      
                       <div className="add-quizzes mt-5">
                         <Link
                           to=""
                           className="myButton appendbtn"
-                          onClick={handleAddAnswer}
+                          onClick={() =>{
+                            setNumAnswers(numAnswers + 1);
+                            setFieldValue("answers", [
+                              ...values.answers,
+                              {
+                                title: "",
+                                sampleAnswer: "",
+                                type: "",
+                                options: [{
+                                  title: "",
+                                  score: "",
+                                }],
+                              },
+                            ]);
+                          }}
                         >
                           <img
                             src="../assets/img/add-filled.png"
@@ -247,6 +264,9 @@ export const Questions = () => {
                         </Link>
                       </div>
                     </div>
+                    </Form>
+                      )}}
+                    </Formik>
                   </div>
                 </div>
               </div>

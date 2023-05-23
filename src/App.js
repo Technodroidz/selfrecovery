@@ -25,7 +25,7 @@ return (
       <Route path="/Possibilities" element={<Possibilities />}></Route>
       <Route path="/Statistics" element={<Statistics />}></Route>
       <Route path="/ShareQuizes" element={<ShareQuizes />}></Route>
-      <Route path="/Profile" element={<Profile />}></Route> 
+      <Route path="/Profile" element={<Profile />}></Route>
       {/* <Route path="/CheckoutForm" element={<CheckoutForm />}></Route>  */}
       <Route path="/Success" element={<Success />}></Route> 
       <Route path="/Cancel" element={<Cancel />}></Route> 
