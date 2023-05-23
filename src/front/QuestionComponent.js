@@ -18,18 +18,18 @@ return (
                   <div className="col-md-2">
                      <img
                         //   onClick={showModal1}
-                        src="assets/img/quizzes-delete.png"
+                        src="../assets/img/quizzes-delete.png"
                         alt="quizzes"
                         className="img-fluid"
                         />
                      <img
-                        src="assets/img/quizzes-edit.png"
+                        src="../assets/img/quizzes-edit.png"
                         alt="quizzes"
                         className="img-fluid"
                         />
                      <img
                         //   onClick={showModal}
-                        src="assets/img/quizzes-img.png"
+                        src="../assets/img/quizzes-img.png"
                         alt="quizzes"
                         className="img-fluid"
                         />
@@ -65,18 +65,18 @@ return (
                         <div className="col-md-2">
                            <img
                               //   onClick={showModal1}
-                              src="assets/img/quizzes-delete.png"
+                              src="../assets/img/quizzes-delete.png"
                               alt="quizzes"
                               className="img-fluid"
                               />
                            <img
-                              src="assets/img/quizzes-edit.png"
+                              src="../assets/img/quizzes-edit.png"
                               alt="quizzes"
                               className="img-fluid"
                               />
                            <img
                               //   onClick={showModal}
-                              src="assets/img/quizzes-img.png"
+                              src="../assets/img/quizzes-img.png"
                               alt="quizzes"
                               className="img-fluid"
                               />
@@ -218,7 +218,7 @@ return (
                                     {" "}
                                     <b>Add Value (Values help with quiz results)</b>
                                     <img
-                                       src="assets/img/add-filled.png"
+                                       src="../assets/img/add-filled.png"
                                        alt="quizzes"
                                        className="img-fluid"
                                        // id="addAnswers"

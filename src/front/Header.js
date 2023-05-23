@@ -148,7 +148,7 @@ return (
 <Navbar collapseOnSelect expand="lg">
       <Container>
         <Navbar.Brand href="/" className="logo">
-      <img src="assets/img/logo.png" alt="logo" className="img-fluid"/>
+      <img src={window.location.origin + '/assets/img/logo.png'} alt="logo" className="img-fluid"/>
       </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

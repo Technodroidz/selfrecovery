@@ -6,12 +6,13 @@ import Multiselect from "multiselect-react-dropdown";
 import QuestionComponent from "./QuestionComponent";
 import Header from '../front/Header';
 import Footer from '../front/Footer';
+import { Button } from "react-bootstrap";
 
 const initialQuestionData = {
-  title: "Sample Title",
-  sampleAnswer: "Sample Answer",
+  title: "",
+  sampleAnswer: "",
   type: 1,
-  options: [{ title: "Sample Answer Options", score: '1' }],
+  options: [{ title: "", score: '' }],
 };
 
 export const Questions = () => {
@@ -82,7 +83,6 @@ export const Questions = () => {
       setAnswers(allAnswers);
     }
   };
-
   const addOption = (index) => {
      let allAnswers = [...answers]
      let options = allAnswers[index]['options']
@@ -112,6 +112,11 @@ export const Questions = () => {
     });
   };
 
+  const submitquestion = () => {
+   console.log(answers);
+
+  } 
+
   return (
     <>
     
@@ -134,7 +139,7 @@ export const Questions = () => {
                   <div className="col-md-2 col-3">
                     <div className="icon-box">
                       <img
-                        src="assets/img/carbon_add-filled.png"
+                        src="../assets/img/carbon_add-filled.png"
                         alt="down"
                         style={{ width: "35px" }}
                         className="img-fluid"
@@ -145,7 +150,7 @@ export const Questions = () => {
                   <div className="col-md-2 col-3">
                     <div className="icon-box">
                       <img
-                        src="assets/img/fluent_delete-24-filled.png"
+                        src="../assets/img/fluent_delete-24-filled.png"
                         alt="down"
                         style={{ width: "35px" }}
                         className="img-fluid"
@@ -156,7 +161,7 @@ export const Questions = () => {
                   <div className="col-md-2 col-3">
                     <div className="icon-box">
                       <img
-                        src="assets/img/ci_edit.png"
+                        src="../assets/img/ci_edit.png"
                         alt="down"
                         style={{ width: "35px" }}
                         className="img-fluid"
@@ -167,7 +172,7 @@ export const Questions = () => {
                   <div className="col-md-2 col-3">
                     <div className="icon-box">
                       <img
-                        src="assets/img/bi_image.png"
+                        src="../assets/img/bi_image.png"
                         alt="down"
                         style={{ width: "35px" }}
                         className="img-fluid"
@@ -184,7 +189,7 @@ export const Questions = () => {
                       className="btn-web"
                     >
                       <img
-                        src="assets/img/connection-box.png"
+                        src="../assets/img/connection-box.png"
                         alt="down"
                         style={{ width: "20px" }}
                         className="img-fluid"
@@ -195,7 +200,7 @@ export const Questions = () => {
                   <div className="col-md-6 mt-4 text-center">
                     <button type="submit" className="btn-web">
                       <img
-                        src="assets/img/eye.png"
+                        src="../assets/img/eye.png"
                         alt="down"
                         style={{ width: "20px" }}
                         className="img-fluid"
@@ -224,6 +229,9 @@ export const Questions = () => {
                           />
                         );
                       })}
+                      <div className="mt-5 text-center">
+                        <button className="btn btn-success" onClick={submitquestion}>Save Questions</button>
+                      </div>
                       <div className="add-quizzes mt-5">
                         <Link
                           to=""
@@ -231,7 +239,7 @@ export const Questions = () => {
                           onClick={handleAddAnswer}
                         >
                           <img
-                            src="assets/img/add-filled.png"
+                            src="../assets/img/add-filled.png"
                             alt="add-filled"
                             className="img-fluid"
                           />
@@ -250,7 +258,7 @@ export const Questions = () => {
       <Modal show={isOpen} onHide={hideModal} centered>
         <Modal.Body className="p_50">
           <span onClick={hideModal} className="clos">
-            <img src="assets/img/clos.png" alt="logo" className="img-fluid" />
+            <img src="../assets/img/clos.png" alt="logo" className="img-fluid" />
           </span>
           <div className="row justify-content-center">
             <div className="col-md-6">
@@ -260,7 +268,7 @@ export const Questions = () => {
                     <div className="col-lg-12 page-style2">
                       <h5>
                         <img
-                          src="assets/img/charm_crop.png"
+                          src="../assets/img/charm_crop.png"
                           alt="down"
                           style={{ width: "20px" }}
                           className="img-fluid"
@@ -278,7 +286,7 @@ export const Questions = () => {
       <Modal show={isOpen1} onHide={hideModal1} centered>
         <Modal.Body className="p_50">
           <span onClick={hideModal1} className="clos">
-            <img src="assets/img/clos.png" alt="logo" className="img-fluid" />
+            <img src="../assets/img/clos.png" alt="logo" className="img-fluid" />
           </span>
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -290,7 +298,7 @@ export const Questions = () => {
                         <div className="col-md-4">
                           <div className="delete-box" onClick={showModal2}>
                             <img
-                              src="assets/img/active.png"
+                              src="../assets/img/active.png"
                               alt="upload-csv"
                               className="img-fluid"
                             />
@@ -300,7 +308,7 @@ export const Questions = () => {
                         <div className="col-md-4">
                           <div className="delete-box" onClick={showModal2}>
                             <img
-                              src="assets/img/inactive.png"
+                              src="../assets/img/inactive.png"
                               alt="upload-csv"
                               style={{ height: "50px" }}
                               className="img-fluid"
@@ -311,7 +319,7 @@ export const Questions = () => {
                         <div className="col-md-4">
                           <div className="delete-box" onClick={showModal2}>
                             <img
-                              src="assets/img/quizzes-delete.png"
+                              src="../assets/img/quizzes-delete.png"
                               alt="upload-csv"
                               style={{ height: "50px" }}
                               className="img-fluid"
@@ -330,7 +338,7 @@ export const Questions = () => {
       <Modal show={isOpen2} onHide={hideModal2} centered>
         <Modal.Body className="p_50">
           <span onClick={hideModal2} className="clos">
-            <img src="assets/img/clos.png" alt="logo" className="img-fluid" />
+            <img src="../assets/img/clos.png" alt="logo" className="img-fluid" />
           </span>
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -372,7 +380,7 @@ export const Questions = () => {
       <Modal show={isOpen3} onHide={hideModal3} centered>
         <Modal.Body className="p_50">
           <span onClick={hideModal3} className="clos">
-            <img src="assets/img/clos.png" alt="logo" className="img-fluid" />
+            <img src="../assets/img/clos.png" alt="logo" className="img-fluid" />
           </span>
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -396,7 +404,7 @@ export const Questions = () => {
                       <div className="row justify-content-center">
                         <div className="col-md-3 mt-3 mb-3">
                           <img
-                            src="assets/img/close.png"
+                            src="../assets/img/close.png"
                             alt="close"
                             style={{ height: "50px" }}
                             className="img-fluid"
@@ -405,7 +413,7 @@ export const Questions = () => {
                         </div>
                         <div className="col-md-3 mt-3 mb-3">
                           <img
-                            src="assets/img/check.png"
+                            src="../assets/img/check.png"
                             alt="check"
                             style={{ height: "50px" }}
                             className="img-fluid"
@@ -424,7 +432,7 @@ export const Questions = () => {
       <Modal show={isOpen4} onHide={hideModal4}>
         <Modal.Body className="p_50">
           <span onClick={hideModal4} className="clos">
-            <img src="assets/img/clos.png" alt="logo" className="img-fluid" />
+            <img src="../assets/img/clos.png" alt="logo" className="img-fluid" />
           </span>
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -439,7 +447,7 @@ export const Questions = () => {
                   <div className="col-md-12 mt-4 text-center mb-4">
                     <button type="submit" className="btn-web">
                       <img
-                        src="assets/img/eye.png"
+                        src="../assets/img/eye.png"
                         alt="down"
                         style={{ width: "20px" }}
                         className="img-fluid"
@@ -583,7 +591,7 @@ export const Questions = () => {
                       <div className="qus-icon">
                         <Link scr="/">
                           <img
-                            src="assets/img/add-filled.png"
+                            src="../assets/img/add-filled.png"
                             alt="close"
                             style={{ height: "40px" }}
                             className="img-fluid"
@@ -725,7 +733,7 @@ export const Questions = () => {
                       <div className="qus-icon">
                         <Link scr="/">
                           <img
-                            src="assets/img/quizzes-edit.png"
+                            src="../assets/img/quizzes-edit.png"
                             alt="close"
                             style={{ height: "30px" }}
                             className="img-fluid"
@@ -744,7 +752,7 @@ export const Questions = () => {
           <div className="row justify-content-center">
             <div className="col-md-1 mt-3 mb-3">
               <img
-                src="assets/img/close.png"
+                src="../assets/img/close.png"
                 alt="close"
                 style={{ height: "40px" }}
                 className="img-fluid"
@@ -753,7 +761,7 @@ export const Questions = () => {
             </div>
             <div className="col-md-1 mt-3 mb-3">
               <img
-                src="assets/img/check.png"
+                src="../assets/img/check.png"
                 alt="check"
                 style={{ height: "40px" }}
                 className="img-fluid"

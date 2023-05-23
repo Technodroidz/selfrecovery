@@ -45,7 +45,7 @@ return (
       <div className="col-md-2 col-12">
       <div className="my-float-right">
       <Link onClick={showModaluploadcsv}  className="back-button">
-            Upload csv &nbsp; <img src="assets/img/upload-csv.png" alt="upload-csv" className="img-fluid"/> </Link>
+            Upload csv &nbsp; <img src={window.location.origin + '/assets/img/upload-csv.png'} alt="upload-csv" className="img-fluid"/> </Link>
         </div>
       </div>
    </div>
@@ -55,14 +55,14 @@ return (
    <div className="row">
       <div className="col-md-8 col-12">
       <div className="footer-logo">
-            <img src="assets/img/logo.png" alt="logo" className="img-fluid"/>
+            <img src={window.location.origin + '/assets/img/logo.png'} alt="logo" className="img-fluid"/>
          </div>
       </div>
       <div className="col-md-2 col-6">
       <div className="my-float-right">
       <div className="footer-menu text-center text-md-right pt-3 pt-md-0">
       <Link to="/">
-         <img src="assets/img/footer-contact.png" alt="contact" className="img-fluid"/> Contact Us</Link>
+         <img src={window.location.origin + '/assets/img/footer-contact.png'} alt="contact" className="img-fluid"/> Contact Us</Link>
             </div>
             </div>
       </div>
@@ -70,7 +70,7 @@ return (
       <div className="my-float-right">
       <div className="footer-menu text-center text-md-right pt-3 pt-md-0">
       <Link to="/">
-      <img src="assets/img/footer-consultation.png" alt="consultation" className="img-fluid"/> Consultation</Link>
+      <img src={window.location.origin + '/assets/img/footer-consultation.png'} alt="consultation" className="img-fluid"/> Consultation</Link>
    </div>
         </div>
       </div>
