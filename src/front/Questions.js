@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-bootstrap/Modal";
 import Multiselect from "multiselect-react-dropdown";
@@ -9,6 +9,8 @@ import Footer from '../front/Footer';
 import { Button } from "react-bootstrap";
 import { Form, Formik, useFormik } from "formik";
 import { QuestionValidationSchema } from "../utils/validations/QuestionValidationSchema";
+import swal from 'sweetalert';
+import http from '../http'
 
 
 export const Questions = () => {
@@ -55,9 +57,35 @@ export const Questions = () => {
 
   const [numAnswers, setNumAnswers] = useState(1);
 
-
+  const navigate = useNavigate();
+  const {id} = useParams(); 
   const submitquestion = (values) => {
-   console.log(values.answers);
+   const dataArray = values.answers;
+   console.log(dataArray);
+   http.post('/add-questions',{data:dataArray, quiz_id:id})
+    .then(res=>{
+      try{
+          console.log(res);
+          if(res.status === 200){
+        // swal(res.data.message);
+          swal({ 
+          title: "Success!",
+          text: res.data.message,
+          type: "success"}).then(okay => {
+          if (okay) {
+            window.location.reload();
+          }
+          });
+          navigate('/Questions/'+id);
+      }else{
+          swal("Something Wrong"); 
+      }
+    }catch(e){
+        swal("Something Wrong");    
+      }
+      }).catch((e) => {
+        swal("Something Wrong");
+    });
   } 
 
   return (

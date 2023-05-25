@@ -111,12 +111,12 @@ return (
                               name={`answers[${index}].type`}
                               >
                               <option value="">Select Radio Button</option>
-                              <option value={1}>Radio Button</option>
-                              <option value={2}>Check Box</option>
-                              <option value={3}>Text Box</option>
-                              <option value={4}>Paragraph</option>
-                              <option value={5}>Drop Down</option>
-                              <option value={6}>Scale</option>
+                              <option value={'radio'}>Radio Button</option>
+                              <option value={'checkbox'}>Check Box</option>
+                              <option value={'text'}>Text Box</option>
+                              <option value={'textarea'}>Paragraph</option>
+                              <option value={'dropdown'}>Drop Down</option>
+                              <option value={'range'}>Scale</option>
                            </Field>
                            <ErrorMessage name={`answers[${index}].type`} component="div"
                            className="text-danger"
