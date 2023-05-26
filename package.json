@@ -48,6 +48,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost/selfrecoveryapi/api",
   "eslintConfig": {
     "extends": [
       "react-app",
