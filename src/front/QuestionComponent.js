@@ -113,10 +113,6 @@ return (
                               <option value="">Select Radio Button</option>
                               <option value={'radio'}>Radio Button</option>
                               <option value={'checkbox'}>Check Box</option>
-                              <option value={'text'}>Text Box</option>
-                              <option value={'textarea'}>Paragraph</option>
-                              <option value={'dropdown'}>Drop Down</option>
-                              <option value={'range'}>Scale</option>
                            </Field>
                            <ErrorMessage name={`answers[${index}].type`} component="div"
                            className="text-danger"

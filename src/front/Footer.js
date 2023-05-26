@@ -8,6 +8,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Modal from "react-bootstrap/Modal";
 import {useRef , useState } from "react";
 import QRCode from 'react-qr-code';
+import html2canvas from 'html2canvas';
 
 
 
@@ -61,6 +62,17 @@ const generateShareOptions = () => {
 const url = window.location.origin + 'ShareQuizes/9';
 console.log(url);
 }
+
+const handleSaveClick = () => {
+   const qrCodeElement = document.getElementById('qrcode');
+   html2canvas(qrCodeElement).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     const link = document.createElement('a');
+     link.href = dataUrl;
+     link.download = 'qrcode.png';
+     link.click();
+   });
+ };
 
 
 return (
@@ -263,7 +275,7 @@ return (
                                           
                                           </div>
                                        </div>
-                                       <div className="row mt-4">
+                                       {/* <div className="row mt-4">
                                           <div className="col-md-4">
                                              <h4 className="font-size-19">Link Access:</h4>
                                           </div>
@@ -275,14 +287,14 @@ return (
                                                 <option>None</option>
                                              </select>
                                           </div>
-                                       </div>
+                                       </div> */}
                                        <div className="row mt-4">
                                           <div className="col-md-4 col-4">
                                              <h4 className="font-size-19">QR Code:</h4>
                                           </div>
                                           <div className="col-md-3 col-2">
                                              {/* <img src={window.location.origin + '/assets/img/cil_qr-code.png'} alt="down" style={{width: "100px"}} className="img-fluid"/> */}
-                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" />
+                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
                                           </div>
                                           <div className="col-md-1 col-2">
                                           <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/></span>
@@ -292,7 +304,7 @@ return (
                                             
                                           </div>
                                           <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid"/>
+                                             <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid" onClick={handleSaveClick}/>
                                           </div>
                                        </div>
                                        <div className="row mt-4">
@@ -300,8 +312,9 @@ return (
                                              <h4 className="font-size-19">JS Snippet:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text" placeholder="<js> //code snippet embed to quiz </js>" class="form-control"/>
+                                          <input type="text" value={"var link ="+ window.location.origin + "'/ShareQuizes/9'"} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
                                           </div>
+
                                           <div className="col-md-1 col-2">
                                              <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                                           </div>
