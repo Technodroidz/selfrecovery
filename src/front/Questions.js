@@ -61,11 +61,11 @@ export const Questions = () => {
   const {id} = useParams(); 
   const submitquestion = (values) => {
    const dataArray = values.answers;
-   console.log(dataArray);
+  // console.log(dataArray);
    http.post('/add-questions',{data:dataArray, quiz_id:id})
     .then(res=>{
       try{
-          console.log(res);
+        //  console.log(res);
           if(res.status === 200){
         // swal(res.data.message);
           swal({ 
