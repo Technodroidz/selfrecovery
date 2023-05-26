@@ -6,9 +6,31 @@ import 'font-awesome/css/font-awesome.min.css';
 import Multiselect from 'multiselect-react-dropdown';
 import Accordion from 'react-bootstrap/Accordion'
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
+import {useRef , useState } from "react";
 import QRCode from 'react-qr-code';
+
+
+
 export const Footer = () => {
+
+   const headingRef = useRef(null);
+
+  const handleCopyClick = () => {
+    const range = document.createRange();
+    range.selectNode(headingRef.current);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+
+    try {
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      console.log('Text copied to clipboard!');
+    } catch (error) {
+      console.log('Unable to copy text:', error);
+    }
+  };
+
+  
 const [file, setFile] = useState();
 function handleChange(e) {
 console.log(e.target.files);
@@ -217,6 +239,7 @@ return (
          </div>
       </div>
       <div className="row justify-content-center mt-4 mb-5">
+      
          <div className="col-md-6">
             <div className="row justify-content-center">
                <div className="account-login-inner">
@@ -233,10 +256,11 @@ return (
                                              <h4 className="font-size-19">Hyperlink:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text" placeholder={window.location.origin + '/ShareQuizes/9'} class="form-control"/>
+                                             <input type="text"  ref={headingRef} placeholder={window.location.origin + '/ShareQuizes/9'} class="form-control"/>
                                           </div>
                                           <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
+                                             <img onClick={handleCopyClick} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
+                                          
                                           </div>
                                        </div>
                                        <div className="row mt-4">
@@ -261,11 +285,11 @@ return (
                                              <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" />
                                           </div>
                                           <div className="col-md-1 col-2">
-                                          <span onClick={() =>
-            { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/></span>
+                                          <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/></span>
                                           </div>
                                           <div className="col-md-1 col-2">
                                              <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
+                                            
                                           </div>
                                           <div className="col-md-1 col-2">
                                              <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid"/>
@@ -295,14 +319,10 @@ return (
       </div>
    </Modal.Body>
 </Modal>
-<Modal size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+<Modal size="sm" aria-labelledby="contained-modal-title-vcenter"
       centered show={isOpenQrview} onHide={hideModalQrview} >
-   <Modal.Body className="p_50">
-      <span onClick={hideModalQrview} className="clos"> 
-      <img src={window.location.origin + '/assets/img/clos.png'} alt="logo" className="img-fluid"/>
-      </span>
-      <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "20%" }} className="img-fluid" />
+   <Modal.Body className="p_50">     
+      <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100%" }} className="img-fluid" />
    </Modal.Body>
 </Modal>
 

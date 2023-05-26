@@ -1120,3 +1120,13 @@ Footer .footer-menu  a:hover {
 #msform .progress {
   display: none;
 }
+
+.modal-sm {
+  width: 400px!important;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - var(--bs-modal-margin)*2);
+}
