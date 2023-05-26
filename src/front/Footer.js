@@ -6,7 +6,10 @@ import 'font-awesome/css/font-awesome.min.css';
 import Multiselect from 'multiselect-react-dropdown';
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import QRCode from 'react-qr-code';
+
 export const Footer = () => {
+
 const [file, setFile] = useState();
 function handleChange(e) {
 console.log(e.target.files);
@@ -28,6 +31,12 @@ const hideModalShare = () => { setIsOpenShare(false);};
 const [isOpenSetting, setIsOpenSetting] = React.useState(false);
 const showModalSetting = () => { setIsOpenSetting(true);};
 const hideModalSetting = () => { setIsOpenSetting(false);};
+
+const generateShareOptions = () => {
+const url = window.location.origin + 'ShareQuizes/9';
+console.log(url);
+
+}
 return (
 <>
 <div className="container mtb-4">
@@ -38,7 +47,7 @@ return (
       </div>
       <div className="col-md-2 col-6">
       <div className="my-float-right">
-      <Link onClick={showModalShare}  className="back-button">
+      <Link onClick={() => { showModalShare(); generateShareOptions(); }}  className="back-button">
             Share  &nbsp; <i className="fa fa-share-alt"></i></Link>
             </div>
       </div>
@@ -83,7 +92,7 @@ return (
 <Modal show={isOpen2} onHide={hideModal2} >
    <Modal.Body className="p_50">
       <span onClick={hideModal2} className="clos"> 
-      <img src="assets/img/clos.png" alt="logo" className="img-fluid"/>
+      <img src={window.location.origin + '/assets/img/clos.png'} alt="logo" className="img-fluid"/>
       </span>
       <div className="row justify-content-center">
          <div className="col-md-8">
@@ -113,7 +122,7 @@ return (
 <Modal show={isOpenuploadcsv} onHide={hideModaluploadcsv} >
    <Modal.Body className="p_50">
       <span onClick={hideModaluploadcsv} className="clos"> 
-      <img src="assets/img/clos.png" alt="logo" className="img-fluid"/>
+      <img src={window.location.origin + '/assets/img/clos.png'} alt="logo" className="img-fluid"/>
       </span>
       <div className="row justify-content-center">
          <div className="col-md-9">
@@ -136,11 +145,11 @@ return (
                   <input type="file" onChange={handleChange} />
                   <p>drag and drop file</p>
                   <div>
-                     <img src={file ? file : 'assets/img/drag-drop.png'} id='preview' alt='preview' />
+                     <img src={file ? file : window.location.origin + '/assets/img/drag-drop.png'} id='preview' alt='preview' />
                      {/* <img src={file} id='preview' alt='preview' /> */}
                   </div>
                </label>
-               <p>Choose file <img src="assets/img/choosefile.png" alt="choose file" style={{width: "20px"}} className="img-fluid"/></p>
+               <p>Choose file <img src={window.location.origin + '/assets/img/choosefile.png'} alt="choose file" style={{width: "20px"}} className="img-fluid"/></p>
                <h5 className="mt-4 mb-3">Download Templates for Upload</h5>
                <div className="row mt-4">
                   <div className="col-md-6 text-right">
@@ -149,11 +158,11 @@ return (
                      <h5>Questions</h5>
                      <h5>Quizzes</h5>
                   </div>
-                  <div className="col-md-6 text-left"><img src="assets/img/eos-icons_csv-file.png" alt="choose file" style={{width: "130px"}} className="img-fluid"/></div>
+                  <div className="col-md-6 text-left"><img src={window.location.origin + '/assets/img/eos-icons_csv-file.png'} alt="choose file" style={{width: "130px"}} className="img-fluid"/></div>
                </div>
                <label className="drag-area">
                   <p>Undo Last Upload</p>
-                  <img onClick={showModaluploadcsv} src="assets/img/bxs_share.png" alt="choose file" className="img-fluid"/>
+                  <img onClick={showModaluploadcsv} src={window.location.origin + '/assets/img/bxs_share.png'} alt="choose file" className="img-fluid"/>
                </label>
             </div>
          </div>
@@ -163,7 +172,7 @@ return (
 <Modal show={isOpenShare} onHide={hideModalShare} >
    <Modal.Body className="p_50">
       <span onClick={hideModalShare} className="clos"> 
-      <img src="assets/img/clos.png" alt="logo" className="img-fluid"/>
+      <img src={window.location.origin + '/assets/img/clos.png'} alt="logo" className="img-fluid"/>
       </span>
       <div className="row justify-content-center">
          <div className="col-md-6">
@@ -180,25 +189,25 @@ return (
             <div className="row justify-content-center">
                <div className="col-md-2 col-6">
                   <div className="icon-box">
-                     <img src="assets/img/copy.png" alt="down" style={{height: "50px"}} className="img-fluid"/>
+                     <img src={window.location.origin + '/assets/img/copy.png'} alt="down" style={{height: "50px"}} className="img-fluid"/>
                      <h4>Copy</h4>
                   </div>
                </div>
                <div className="col-md-2 col-6">
                   <div className="icon-box">
-                     <img src="assets/img/active-share.png" alt="down" style={{height: "50px"}} className="img-fluid"/>
+                     <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" style={{height: "50px"}} className="img-fluid"/>
                      <h4>Active</h4>
                   </div>
                </div>
                <div className="col-md-2 col-6">
                   <div className="icon-box">
-                     <img src="assets/img/inactive-share.png" alt="down" style={{height: "50px"}} className="img-fluid"/>
+                     <img src={window.location.origin + '/assets/img/inactive-share.png'} alt="down" style={{height: "50px"}} className="img-fluid"/>
                      <h4>Inactive</h4>
                   </div>
                </div>
                <div className="col-md-2 col-6">
                   <div className="icon-box" onClick={showModalSetting}>
-                     <img src="assets/img/setting.png" alt="down" style={{height: "50px"}} className="img-fluid"/>
+                     <img src={window.location.origin + '/assets/img/setting.png'} alt="down" style={{height: "50px"}} className="img-fluid"/>
                      <h4>Setting</h4>
                   </div>
                </div>
@@ -211,8 +220,8 @@ return (
                <div className="col-md-8 mt-4">
                   <div className="Quizzes-q">
                      <h5>
-                        <img src="assets/img/inactive-share.png" alt="quizzes" className="img-fluid"/>
-                        <img src="assets/img/setting.png" alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + '/assets/img/inactive-share.png'} alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + '/assets/img/setting.png'} alt="quizzes" className="img-fluid"/>
                         <spam><b>Quiz 1:</b> The Best Essential Oil Blend for...</spam>
                      </h5>
                   </div>
@@ -224,10 +233,10 @@ return (
                                  <h4 className="font-size-19">Hyperlink:</h4>
                               </div>
                               <div className="col-md-7 col-10">
-                                 <input type="text" placeholder="http://sample.linkage" class="form-control"/>
+                                 <input type="text" placeholder={window.location.origin + '/ShareQuizes/9'} class="form-control"/>
                               </div>
                               <div className="col-md-1 col-2">
-                              <img src="assets/img/copy.png" alt="down" className="img-fluid"/>
+                              <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                               </div>
                            </div>
                            <div className="row mt-4">
@@ -249,16 +258,17 @@ return (
                               </div>
                               
                               <div className="col-md-3 col-2">
-                              <img src="assets/img/cil_qr-code.png" alt="down" style={{width: "100px"}} className="img-fluid"/>
+                              {/* <img src={window.location.origin + '/assets/img/cil_qr-code.png'} alt="down" style={{width: "100px"}} className="img-fluid"/> */}
+                              <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid"/>
                               </div>
                               <div className="col-md-1 col-2">
-                              <img src="assets/img/active-share.png" alt="down" className="img-fluid"/>
+                              <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/>
                               </div>
                               <div className="col-md-1 col-2">
-                              <img src="assets/img/copy.png" alt="down" className="img-fluid"/>
+                              <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                               </div>
                               <div className="col-md-1 col-2">
-                              <img src="assets/img/save.png" alt="down" className="img-fluid"/>
+                              <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid"/>
                               </div>
                            </div>
                            <div className="row mt-4">
@@ -269,10 +279,10 @@ return (
                                  <input type="text" placeholder="<js> //code snippet embed to quiz </js>" class="form-control"/>
                               </div>
                               <div className="col-md-1 col-2">
-                              <img src="assets/img/copy.png" alt="down" className="img-fluid"/>
+                              <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                               </div>
                            </div>
-                           <div className="row mt-4">
+                           {/* <div className="row mt-4">
                               <div className="col-md-4">
                                  <h4 className="font-size-19">Cookies:</h4>
                               </div>
@@ -283,8 +293,8 @@ return (
                                     <option>None</option>
                                  </select>
                               </div>
-                           </div>
-                           <div className="row mt-4">
+                           </div> */}
+                           {/* <div className="row mt-4">
                               <div className="col-md-4">
                                  <h4 className="font-size-19"></h4>
                               </div>
@@ -311,21 +321,21 @@ return (
                                     showArrow
                                     />                                    
                               </div>
-                           </div>
+                           </div> */}
                         </div>
                      </div>
                   </div>
-                  <div className="Quizzes-q">
+                  {/* <div className="Quizzes-q">
                         <h5>
-                        <img src="assets/img/inactive-share.png" alt="quizzes" className="img-fluid"/>
-                        <img src="assets/img/setting.png" alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + 'assets/img/inactive-share.png'} alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + 'assets/img/setting.png'} alt="quizzes" className="img-fluid"/>
                            <spam><b>Quiz 2:</b> The perfect bike for me.</spam>
                         </h5>
                      </div>
                      <div className="Quizzes-q">
                         <h5>
-                        <img src="assets/img/inactive-share.png" alt="quizzes" className="img-fluid"/>
-                        <img src="assets/img/setting.png" alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + 'assets/img/inactive-share.png'} alt="quizzes" className="img-fluid"/>
+                        <img src={window.location.origin + 'assets/img/setting.png'} alt="quizzes" className="img-fluid"/>
                            <spam><b>Quiz 3:</b> The best make up brush for oily face.</spam>
                         </h5>
                      </div>
@@ -363,7 +373,7 @@ return (
                         <img src="assets/img/setting.png" alt="quizzes" className="img-fluid"/>
                            <spam><b>Quiz 8:</b> Trending pants in the market.</spam>
                         </h5>
-                     </div>
+                     </div> */}
                </div>
             </div>
          </div>
@@ -373,7 +383,7 @@ return (
 <Modal show={isOpenSetting} onHide={hideModalSetting} >
    <Modal.Body className="p_50">
       <span onClick={hideModalSetting} className="clos"> 
-      <img src="assets/img/clos.png" alt="logo" className="img-fluid"/>
+      <img src={window.location.origin + '/assets/img/clos.png'} alt="logo" className="img-fluid"/>
       </span>
       <div className="row justify-content-center">
          <div className="col-md-6">
