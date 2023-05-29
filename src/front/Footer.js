@@ -308,8 +308,7 @@ return (
                </div>
             </div>
          </div>
-      </div>
-      {alluserquizzes.map((allquiz,index)=>(
+      </div>      
       <div className="row justify-content-center mt-4 mb-5">
          <div className="col-md-6">
             <div className="row justify-content-center">
@@ -368,11 +367,12 @@ return (
                         </Accordion.Body>
                      </Accordion.Item>
                   </Accordion>
-               </div>
+                   ))} 
+               </div>              
             </div>
          </div>  
       </div>
-       ))} 
+       
    </Modal.Body>
 </Modal>
 <Modal size="sm" aria-labelledby="contained-modal-title-vcenter"
