@@ -309,11 +309,12 @@ return (
             </div>
          </div>
       </div>
-      {alluserquizzes.map((allquiz,index)=>(
+      
       <div className="row justify-content-center mt-4 mb-5">
          <div className="col-md-6">
             <div className="row justify-content-center">
                <div className="account-login-inner">
+               {alluserquizzes.map((allquiz,index)=>(
                   <Accordion>
                      <Accordion.Item eventKey="0">
                         <Accordion.Header><b>Quiz {++x}:</b>&nbsp; {allquiz.quiz_name}.</Accordion.Header>
@@ -327,30 +328,10 @@ return (
                                              <h4 className="font-size-19">Hyperlink:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text"  ref={headingRef} placeholder={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
+                                             <input type="text" placeholder={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
                                           </div>
                                           <div className="col-md-1 col-2">
-                                             <img onClick={handleCopyClick} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
-                                          
-                                          </div>
-                                       </div>
-                                       <div className="row mt-4">
-                                          <div className="col-md-4 col-4">
-                                             <h4 className="font-size-19">QR Code:</h4>
-                                          </div>
-                                          <div className="col-md-3 col-2">
-                                             {/* <img src={window.location.origin + '/assets/img/cil_qr-code.png'} alt="down" style={{width: "100px"}} className="img-fluid"/> */}
-                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/'+allquiz.id)}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
-                                          </div>
-                                          <div className="col-md-1 col-2">
-                                          <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/></span>
-                                          </div>
-                                          <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
-                                            
-                                          </div>
-                                          <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid" onClick={handleSaveClick}/>
+                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>                                          
                                           </div>
                                        </div>
                                        <div className="row mt-4">
@@ -358,13 +339,28 @@ return (
                                              <h4 className="font-size-19">JS Snippet:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                          <input type="text" value={"var link ="+ window.location.origin + "'/ShareQuizes/'"+allquiz.id} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
+                                          <input type="text" ref={headingRef} value={"var link ="+ window.location.origin + "'/ShareQuizes/'"+allquiz.id} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
                                           </div>
 
                                           <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
+                                             <img onClick={handleCopyClick} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                                           </div>
                                        </div>
+                                       <div className="row mt-4">
+                                          <div className="col-md-4 col-4">
+                                             <h4 className="font-size-19">QR Code:</h4>
+                                          </div>
+                                          <div className="col-md-3 col-2">                                             
+                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/'+allquiz.id)}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
+                                          </div>
+                                          <div className="col-md-1 col-2">
+                                          <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid" title='view'/></span>
+                                          </div>
+                                          <div className="col-md-1 col-2">
+                                             <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid" title='Download' onClick={handleSaveClick}/>
+                                          </div>
+                                       </div>
+                                       
                                     </div>
                                  </div>
                               </div>
@@ -372,11 +368,12 @@ return (
                         </Accordion.Body>
                      </Accordion.Item>
                   </Accordion>
+                     ))} 
                </div>
             </div>
          </div>  
       </div>
-       ))} 
+    
    </Modal.Body>
 </Modal>
 <Modal size="sm" aria-labelledby="contained-modal-title-vcenter"
