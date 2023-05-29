@@ -9,12 +9,15 @@ import Modal from "react-bootstrap/Modal";
 import {useRef , useState } from "react";
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
-
-
+import { ReactSession } from 'react-client-session';
+import swal from 'sweetalert';
+import http from '../http'
 
 export const Footer = () => {
 
    const headingRef = useRef(null);
+   const[alluserquizzes, setUserQuizzes] = useState([]);
+   let x = 0;
 
   const handleCopyClick = () => {
     const range = document.createRange();
@@ -58,10 +61,35 @@ const hideModalQrview = () => { setIsOpenQrview(false);};
 const [isOpenSetting, setIsOpenSetting] = React.useState(false);
 const showModalSetting = () => { setIsOpenSetting(true);};
 const hideModalSetting = () => { setIsOpenSetting(false);};
+
+ReactSession.setStoreType("localStorage");
+const sessioncheck = ReactSession.get("user");
+
 const generateShareOptions = () => {
-const url = window.location.origin + 'ShareQuizes/9';
-console.log(url);
+   const url = window.location.origin + 'ShareQuizes/9';
+   console.log(url);
+   if(sessioncheck == null){
+      swal("Please Login");  
+   }else{
+      const user_id = sessioncheck.user_id;
+      http.post('/fetch-user-quiz',{user_id:user_id})
+      .then(res=>{
+         try{
+         // console.log(res);
+            if(res.status === 200){
+              setUserQuizzes(res.data.data);
+            }else{
+               swal("Something Wrong"); 
+            }
+         }catch(e){
+               swal("Something Wrong");    
+            }
+            }).catch((e) => {
+               swal("Something Wrong");
+         }); 
+   }
 }
+console.log(alluserquizzes);
 
 const handleSaveClick = () => {
    const qrCodeElement = document.getElementById('qrcode');
@@ -250,14 +278,14 @@ return (
             </div>
          </div>
       </div>
+      {alluserquizzes.map((allquiz,index)=>(
       <div className="row justify-content-center mt-4 mb-5">
-      
          <div className="col-md-6">
             <div className="row justify-content-center">
                <div className="account-login-inner">
                   <Accordion>
                      <Accordion.Item eventKey="0">
-                        <Accordion.Header><b>Quiz 1:</b>&nbsp; The Best Essential Oil Blend for...</Accordion.Header>
+                        <Accordion.Header><b>Quiz {++x}:</b>&nbsp; {allquiz.quiz_name}.</Accordion.Header>
                         <Accordion.Body>
                            <div className="qus-tab py-3 px-4">
                               <div className="possibility-q">
@@ -268,33 +296,20 @@ return (
                                              <h4 className="font-size-19">Hyperlink:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text"  ref={headingRef} placeholder={window.location.origin + '/ShareQuizes/9'} class="form-control"/>
+                                             <input type="text"  ref={headingRef} placeholder={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
                                           </div>
                                           <div className="col-md-1 col-2">
                                              <img onClick={handleCopyClick} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                                           
                                           </div>
                                        </div>
-                                       {/* <div className="row mt-4">
-                                          <div className="col-md-4">
-                                             <h4 className="font-size-19">Link Access:</h4>
-                                          </div>
-                                          <div className="col-md-8">
-                                             <select class="form-control">
-                                                <option>Link Access </option>
-                                                <option>Public</option>
-                                                <option>Unlisted</option>
-                                                <option>None</option>
-                                             </select>
-                                          </div>
-                                       </div> */}
                                        <div className="row mt-4">
                                           <div className="col-md-4 col-4">
                                              <h4 className="font-size-19">QR Code:</h4>
                                           </div>
                                           <div className="col-md-3 col-2">
                                              {/* <img src={window.location.origin + '/assets/img/cil_qr-code.png'} alt="down" style={{width: "100px"}} className="img-fluid"/> */}
-                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/9')}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
+                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/'+allquiz.id)}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
                                           </div>
                                           <div className="col-md-1 col-2">
                                           <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid"/></span>
@@ -312,7 +327,7 @@ return (
                                              <h4 className="font-size-19">JS Snippet:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                          <input type="text" value={"var link ="+ window.location.origin + "'/ShareQuizes/9'"} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
+                                          <input type="text" value={"var link ="+ window.location.origin + "'/ShareQuizes/'"+allquiz.id} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
                                           </div>
 
                                           <div className="col-md-1 col-2">
@@ -328,8 +343,9 @@ return (
                   </Accordion>
                </div>
             </div>
-         </div>
+         </div>  
       </div>
+       ))} 
    </Modal.Body>
 </Modal>
 <Modal size="sm" aria-labelledby="contained-modal-title-vcenter"

@@ -48,7 +48,7 @@ export const Quizzes = () => {
       }
    }
    
-   console.log(alluserquizzes);
+   //console.log(alluserquizzes);
 
    // const submitquiz = () => {
    //    const headers = { 
