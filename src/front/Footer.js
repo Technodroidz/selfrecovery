@@ -309,11 +309,11 @@ return (
             </div>
          </div>
       </div>
-      {alluserquizzes.map((allquiz,index)=>(
       <div className="row justify-content-center mt-4 mb-5">
          <div className="col-md-6">
             <div className="row justify-content-center">
                <div className="account-login-inner">
+               {alluserquizzes.map((allquiz,index)=>(
                   <Accordion>
                      <Accordion.Item eventKey="0">
                         <Accordion.Header><b>Quiz {++x}:</b>&nbsp; {allquiz.quiz_name}.</Accordion.Header>
@@ -372,11 +372,11 @@ return (
                         </Accordion.Body>
                      </Accordion.Item>
                   </Accordion>
+               ))} 
                </div>
             </div>
          </div>  
       </div>
-       ))} 
    </Modal.Body>
 </Modal>
 <Modal size="sm" aria-labelledby="contained-modal-title-vcenter"
