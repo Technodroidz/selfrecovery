@@ -156,7 +156,7 @@ return (
           <Nav>
             <Nav.Link href="/">Home</Nav.Link>  
             <Nav.Link href="/Quizzes">Quizzes</Nav.Link>  
-            <Nav.Link href="/Account">Account</Nav.Link>            
+            {/* <Nav.Link href="/Account">Account</Nav.Link>             */}
             {/* <Nav.Link href="/Questions">Questions</Nav.Link>   */}
             <Nav.Link href="/Designs">Designs</Nav.Link>  
             <Nav.Link href="/Statistics">Statistics</Nav.Link>  
