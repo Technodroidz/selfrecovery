@@ -41,9 +41,9 @@ export const ShareQuizes = () => {
             } catch (e) {
                swal({ 
                   title: "Warning!",
-                  text: 'No Questions are available in this quiz.',
+                  text: 'No Questions are available in this quiz. Please add question first.',
                   });
-                  navigate('/');
+                  navigate('/Quizzes');
             }
          }).catch((e) => {
             swal("Something Wrong");

@@ -49,32 +49,42 @@ export const Quizzes = () => {
    }
    
    //console.log(alluserquizzes);
+   
+   const deleteQuiz = (quizId) => {
+   // alert(quizId);
+      if(sessioncheck == null){
+         swal("Please Login");  
+      }else{
+         http.post('/delete-quiz',{quiz_id:quizId})
+         .then(res=>{
+            try{
+               //console.log(res);
+               if(res.status === 200){
+              // swal(res.data.message);
+               swal({ 
+                title: "Success!",
+                text: res.data.message,
+                type: "success"}).then(okay => {
+                if (okay) {
+                 window.location.reload();
+                }
+                });
+            }else{
+               swal("Something Wrong"); 
+            }
+            }catch(e){
+               swal("Something Wrong");    
+               }
+               }).catch((e) => {
+               swal("Something Wrong");
+            });
+         }  
+   }
 
-   // const submitquiz = () => {
-   //    const headers = { 
-   //       'accept': 'multipart/form-data',
-   //       'Content-Type': 'multipart/form-data',
-   //       'Access-Control-Allow-Origin':'*',
-   //       'Access-Control-Allow-Header':'*'
-   // };
-
-   //    console.log(quiz_image);
-   //    const user_id = sessioncheck.user_id;
-   //    axios.post('http://localhost/selfrecoveryapi/api/add-quiz', {user_id:user_id,quiz_name:quiz_name,quiz_image:quiz_image}, { headers })
-   //    .then(res=>{
-   //       try{
-   //           console.log(res);
-           
-   //       }catch(e){
-   //          console.log("errorss");
-   //          console.log('error', e)       
-   //       }
-   //    }).catch((e) => {
-   //       console.log("error");
-   //       console.log(e);
-   // });
-   // }
-
+   const previewQuiz = (quizId) => {
+    const url = window.location.origin + '/ShareQuizes/'+quizId;
+    window.location.href = url;
+   }
     const submitquiz = () => {
       const user_id = sessioncheck.user_id;
      // console.log(quiz_image);
@@ -172,9 +182,9 @@ return (
                         <div className="row mb-3">
                            <div className="col-md-2">
                               <h5>
-                                 <img onClick={showModal1} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
+                                 <img onClick={() => { deleteQuiz(allquiz.id); }} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
                                  <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                                 <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
+                                 <img onClick={() => { previewQuiz(allquiz.id); }} src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
                               </h5>
                            </div>
                            <div className="col-md-8">

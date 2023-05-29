@@ -102,6 +102,37 @@ const handleSaveClick = () => {
    });
  };
 
+ const deleteQuiz = (quizId) => {
+   // alert(quizId);
+      if(sessioncheck == null){
+         swal("Please Login");  
+      }else{
+         http.post('/delete-quiz',{quiz_id:quizId})
+         .then(res=>{
+            try{
+               //console.log(res);
+               if(res.status === 200){
+              // swal(res.data.message);
+               swal({ 
+                title: "Success!",
+                text: res.data.message,
+                type: "success"}).then(okay => {
+                if (okay) {
+                 window.location.reload();
+                }
+                });
+            }else{
+               swal("Something Wrong"); 
+            }
+            }catch(e){
+               swal("Something Wrong");    
+               }
+               }).catch((e) => {
+               swal("Something Wrong");
+            });
+         }  
+   }
+
 
 return (
 <>
