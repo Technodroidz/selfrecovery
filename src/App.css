@@ -310,7 +310,7 @@ section {
 .Quizzes-q {
   margin-bottom: 10px;
     border: 1px solid #dadada;
-    padding: 20px;
+    padding: 20px 20px 5px;
     border-radius: 5px;
 }
 .Quizzes-q img{

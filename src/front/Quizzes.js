@@ -179,7 +179,7 @@ return (
                   <div className="col-md-10 mt-4">
                   {alluserquizzes.map((allquiz,index)=>(
                      <div className="Quizzes-q">
-                        <div className="row mb-3">
+                        <div className="row">
                            <div className="col-md-2">
                               <h5>
                                  <img onClick={() => { deleteQuiz(allquiz.id); }} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
@@ -187,12 +187,12 @@ return (
                                  <img onClick={() => { previewQuiz(allquiz.id); }} src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
                               </h5>
                            </div>
-                           <div className="col-md-8">
+                           <div className="col-md-7">
                               <h5>
                               <spam><b>Quiz {++x}:</b> {allquiz.quiz_name}.</spam>
                               </h5>
                            </div>
-                           <div className="col-md-2">
+                           <div className="col-md-3 text-end">
                               <h5>
                                  <spam>
                                     <Link to={{ pathname: "/Questions/" + allquiz.id }} className="btn btn-outline-primary btn-sm">

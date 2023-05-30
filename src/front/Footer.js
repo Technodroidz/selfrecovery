@@ -15,22 +15,24 @@ import http from '../http'
 
 export const Footer = () => {
 
-   const headingRef = useRef(null);
+  
    const[alluserquizzes, setUserQuizzes] = useState([]);
    let x = 0;
 
-  const handleCopyClick = () => {
-    const range = document.createRange();
-    range.selectNode(headingRef.current);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
+   const headingRef = useRef(null);
 
-    try {
-      document.execCommand('copy');
-      window.getSelection().removeAllRanges();
-      console.log('Text copied to clipboard!');
-    } catch (error) {
-      console.log('Unable to copy text:', error);
+  const copyToClipboard = () => {
+    if (headingRef.current) {
+      const textToCopy = headingRef.current.textContent;
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          console.log('Text copied to clipboard');
+          // You can show a success message or perform any other desired action here
+        })
+        .catch((error) => {
+          console.error('Failed to copy text: ', error);
+          // You can show an error message or handle the error in any appropriate way here
+        });
     }
   };
 
@@ -327,10 +329,10 @@ return (
                                              <h4 className="font-size-19">Hyperlink:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text" placeholder={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
+                                             <input type="text" ref={headingRef} value={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
                                           </div>
                                           <div className="col-md-1 col-2">
-                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>                                          
+                                             <img onClick={copyToClipboard} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>                                          
                                           </div>
                                        </div>
                                        <div className="row mt-4">
@@ -338,24 +340,24 @@ return (
                                              <h4 className="font-size-19">JS Snippet:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                          <input type="text" ref={headingRef} value={"var link ="+ window.location.origin + "'/ShareQuizes/'"+allquiz.id} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
+                                          <input type="text" value={window.location.origin + "'/ShareQuizes/'"+allquiz.id} placeholder="<js> //code snippet embed to quiz </js>" className="form-control" readOnly/>
                                           </div>
 
                                           <div className="col-md-1 col-2">
-                                             <img onClick={handleCopyClick} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
+                                             <img src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>
                                           </div>
                                        </div>
                                        <div className="row mt-4">
-                                          <div className="col-md-4 col-4">
+                                          <div className="col-md-4 col-12">
                                              <h4 className="font-size-19">QR Code:</h4>
                                           </div>
-                                          <div className="col-md-3 col-2">                                             
-                                             <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/'+allquiz.id)}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
+                                          <div className="col-md-3 col-4">                            
+                                          <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(window.location.origin + '/ShareQuizes/'+allquiz.id)}&amp;size=100x100`} alt="QR Code" style={{ width: "100px" }} className="img-fluid" id="qrcode"/>
                                           </div>
-                                          <div className="col-md-1 col-2">
+                                          <div className="col-md-1 col-4">
                                           <span onClick={() => { showModalQrview(); }} > <img src={window.location.origin + '/assets/img/active-share.png'} alt="down" className="img-fluid" title='view'/></span>
                                           </div>
-                                          <div className="col-md-1 col-2">
+                                          <div className="col-md-1 col-4">
                                              <img src={window.location.origin + '/assets/img/save.png'} alt="down" className="img-fluid" title='Download' onClick={handleSaveClick}/>
                                           </div>
                                        </div>
