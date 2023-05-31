@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
-
+import Header from '../front/Header';
+import Footer from '../front/Footer';
 
 export const ViewQuizes = () => {
    const questions = [
@@ -69,13 +69,7 @@ export const ViewQuizes = () => {
 return (
 <>
 
-<div className="container mt-4">
-   <div className="row justify-content-center">
-      <div className="col-md-8 text-center">
-         <img src="../assets/img/logo.png" alt="logo" width="10%" className="img-fluid" />
-      </div>
-   </div>
-</div>
+<Header />
 <main id="main">
    <section>
       <div className="container">
@@ -122,33 +116,7 @@ return (
       </div>
    </section>
 </main>
-<footer>
-   <div className="container py-4">
-      <div className="row">
-         <div className="col-md-8 col-12">
-            <div className="footer-logo">
-               <img src="../assets/img/logo.png" alt="logo" className="img-fluid" />
-            </div>
-         </div>
-         <div className="col-md-2 col-6">
-            <div className="my-float-right">
-               <div className="footer-menu text-center text-md-right pt-3 pt-md-0">
-                  <Link to="/">
-                  <img src="../assets/img/footer-contact.png" alt="contact" className="img-fluid" /> Contact Us</Link>
-               </div>
-            </div>
-         </div>
-         <div className="col-md-2 col-6">
-            <div className="my-float-right">
-               <div className="footer-menu text-center text-md-right pt-3 pt-md-0">
-                  <Link to="/">
-                  <img src="../assets/img/footer-consultation.png" alt="consultation" className="img-fluid" /> Consultation</Link>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</footer>
+<Footer />
 </>
 )
 
