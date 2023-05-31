@@ -12,10 +12,30 @@ export const ShareQuizes = () => {
    const navigate = useNavigate();
    const {id} = useParams(); 
    const [quizQuestionsData , setQuizQuestionsData] = useState([]) 
+   const [quiztitle , setQuizTitle] = useState([])
 
    useEffect(()=>{
       fetchQuizQuestionData();
+      fetchQuizTitle();
    },[]);
+
+   const fetchQuizTitle = () => {
+      http.post('/fetch-quiz-title',{quiz_id:id})
+      .then(res=>{
+         try{
+            if(res.status === 200){
+           // console.log(res.data.data);
+            setQuizTitle(res.data.data); 
+         }else{
+            swal("Something Wrong"); 
+         }
+      }catch(e){
+         swal("Something Wrong");    
+         }
+         }).catch((e) => {
+         swal("Something Wrong");
+      });
+   }
 
    const fetchQuizQuestionData = () => {
       http.get('/share-quiz/' + id)
@@ -80,7 +100,7 @@ export const ShareQuizes = () => {
                   <div className="row justify-content-center">
                      <div className="col-md-8 page-box">
                         <div className="col-lg-12 text-center page-style2">
-                           <h4><b>Quiz Name:</b> The best essential oil blend for me today.</h4>
+                           <h4><b>Quiz Name:</b> {quiztitle.quiz_title}</h4>
                            {/* <h4 className="mt-4 mb-3">Add/edit questions and answers for your quiz. Assign values to each possible answer.</h4> */}
                         </div>
                         <div className="container-fluid">

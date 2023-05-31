@@ -11,11 +11,31 @@ export const ViewQuizes = () => {
    const navigate = useNavigate();
    const {id} = useParams(); 
    const [questions , setQuestions] = useState([]) 
+   const [quiztitle , setQuizTitle] = useState([]) 
    let x = 0;
    useEffect(()=>{
       fetchQuizQuestionData();
+      fetchQuizTitle();
    },[]);
 
+   const fetchQuizTitle = () => {
+      http.post('/fetch-quiz-title',{quiz_id:id})
+      .then(res=>{
+         try{
+            if(res.status === 200){
+           // console.log(res.data.data);
+            setQuizTitle(res.data.data); 
+         }else{
+            swal("Something Wrong"); 
+         }
+      }catch(e){
+         swal("Something Wrong");    
+         }
+         }).catch((e) => {
+         swal("Something Wrong");
+      });
+   }
+  // console.log(quiztitle.quiz_title);
    const fetchQuizQuestionData = () => {
       http.get('/share-quiz/' + id)
         .then(res => {
@@ -73,7 +93,7 @@ return (
          <div className="row justify-content-center">
             <div className="col-md-8 page-box">
                <div className="col-lg-12 text-center page-style2">
-                  <h4><b>Quiz Name:</b> The best essential oil blend for me today.</h4>
+                  <h4><b>Quiz Name:</b> {quiztitle.quiz_title}</h4>
                </div>
                <div className="container-fluid">
                   <div className="row justify-content-center">
