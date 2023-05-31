@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'font-awesome/css/font-awesome.min.css';
-import Multiselect from 'multiselect-react-dropdown';
 import Accordion from 'react-bootstrap/Accordion'
 import Modal from "react-bootstrap/Modal";
 import {useRef , useState } from "react";
-import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
 import { ReactSession } from 'react-client-session';
 import swal from 'sweetalert';
