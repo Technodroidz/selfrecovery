@@ -1,11 +1,79 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from "react-bootstrap/Modal";
 import $ from "jquery";
 import Header from '../front/Header';
 import Footer from '../front/Footer';
+import {useState} from 'react';
+import swal from 'sweetalert';
+import { ReactSession } from 'react-client-session';
+import http from '../http'
+
 export const Home = () => {
+
+   const navigate = useNavigate(); 
+   
+   ReactSession.setStoreType("localStorage");
+   const sessioncheck = ReactSession.get("user");
+   
+   const [email,setEmail] = useState();
+   const [phone,setPhone] = useState();
+   const [message,setMessage] = useState();
+
+   const submitForm = () => {
+      if(email == null){
+         return swal("Email is mandatory");
+      }
+      if(phone == null){
+         return swal("Phone is mandatory");
+      }
+      if(message == null){
+         return swal("Message is mandatory");
+      } 
+      http.post('/submit-query',{email:email,phone:phone,message:message})
+      .then(res=>{
+         try{
+            // console.log(res);
+            if(res.status === 200){
+            swal(res.data.message);
+            window.location.reload();
+               navigate('/');
+            }else{
+               swal("Please try later"); 
+            }
+         }catch(e){
+               swal("Something Wrong");    
+         }
+      }).catch((e) => {
+         swal("Something Wrong");
+      }); 
+
+   }  
+
+   const apiAccess = () => {
+      if(sessioncheck == null){
+         swal("Please Login");  
+         navigate('/');
+      }else{
+         const user_id = sessioncheck.user_id;
+         http.post('/user-api-access',{user_id:user_id})
+         .then(res=>{
+            try{
+              // console.log(res);
+               if(res.status === 200){
+              swal(res.data.message);
+            }else{
+               swal("Something Wrong"); 
+            }
+          }catch(e){
+               swal("Something Wrong");    
+            }
+            }).catch((e) => {
+               swal("Something Wrong");
+         });
+      }   
+   }   
  
 const [isOpen, setIsOpen] = React.useState(false);
 const showModal = () => { setIsOpen(true);};
@@ -64,19 +132,19 @@ return (
                   <div className="row">
                      <div className="col-md-12">
                         <div className="form-group mb-3">
-                           <input type="text" className="form-control" placeholder="Email"/>
+                           <input type="text" className="form-control" placeholder="Email" onChange={e=>setEmail(e.target.value)}/>
                         </div>
                      </div>
                      <div className="col-md-12">
                         <div className="form-group mb-3">
-                           <input type="text" className="form-control" placeholder="Phone"/>
+                           <input type="text" className="form-control" placeholder="Phone" onChange={e=>setPhone(e.target.value)}/>
                         </div>
                         <div className="form-group mb-3">
-                           <textarea className="form-control" placeholder="Your message" rows="8"></textarea>
+                           <textarea onChange={e=>setMessage(e.target.value)} className="form-control" placeholder="Your message" rows="8"></textarea>
                         </div>
                      </div>
                      <div className="col-md-12 mt-4 ">
-                        <button type="submit" className="btn-web">Submit</button>
+                        <button type="button" onClick={submitForm} className="btn-web">Submit</button>
                      </div>
                   </div>
                </form>
@@ -103,19 +171,19 @@ return (
                   <div className="row">
                      <div className="col-md-12">
                         <div className="form-group mb-3">
-                           <input type="text" className="form-control" placeholder="Email"/>
+                           <input type="text" className="form-control" placeholder="Email" onChange={e=>setEmail(e.target.value)}/>
                         </div>
                      </div>
                      <div className="col-md-12">
                         <div className="form-group mb-3">
-                           <input type="text" className="form-control" placeholder="Phone"/>
+                           <input type="text" className="form-control" placeholder="Phone" onChange={e=>setPhone(e.target.value)}/>
                         </div>
                         <div className="form-group mb-3">
-                           <textarea className="form-control" placeholder="Your message" rows="8"></textarea>
+                           <textarea onChange={e=>setMessage(e.target.value)} className="form-control" placeholder="Your message" rows="8"></textarea>
                         </div>
                      </div>
                      <div className="col-md-12 mt-4">
-                        <button type="submit" className="btn-web">Submit</button>
+                        <button type="button" onClick={submitForm} className="btn-web">Submit</button>
                      </div>
                   </div>
                </form>
@@ -140,7 +208,7 @@ return (
                <form className="mt-4">
                   <div className="row">
                      <div className="col-md-12 mt-2">
-                        <button type="submit" className="btn-web">Access API</button>
+                        <button type="button" onClick={apiAccess} className="btn-web">Access API</button>
                      </div>
                   </div>
                </form>
