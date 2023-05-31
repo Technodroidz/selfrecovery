@@ -47,53 +47,7 @@ export const ViewQuizes = () => {
             swal("Something Wrong");
         });
     }
-   // const questions = [
-   //    {
-   //      id: '1',
-   //      answer: {
-   //       1:'answer 1',
-   //       2:'answer 2',
-   //       3:'answer 3',
-   //       4:'answer 4',
-   //      }
-   //    },
-   //    {
-   //      id: '2',
-   //      answer: {
-   //       1:'answer1',
-   //       2:'answer2',
-   //       3:'answer3',
-   //       4:'answer4',
-   //      }
-   //    },
-   //    {
-   //      id: '2',
-   //      answer: {
-   //       1:'answer 1',
-   //       2:'answer 2',
-   //       3:'answer 3',
-   //       4:'answer 4',
-   //      }
-   //    },
-   //    {
-   //      id: '3',
-   //      answer: {
-   //       1:'answer 1',
-   //       2:'answer 2',
-   //       3:'answer 3',
-   //       4:'answer 4',
-   //      }
-   //    },
-   //    {
-   //      id: '4',
-   //      answer: {
-   //       1:'answer 1',
-   //       2:'answer 2',
-   //       3:'answer 3',
-   //       4:'answer 4',
-   //      }
-   //    },
-   //  ];
+ 
       const [currentQuestion, setCurrentQuestion] = useState(0);
     
       const handleNext = () => {
