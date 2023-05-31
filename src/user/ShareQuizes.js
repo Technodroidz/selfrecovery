@@ -15,7 +15,7 @@ export const ShareQuizes = () => {
 
    useEffect(()=>{
       fetchQuizQuestionData();
-   },[ ]);
+   },[]);
 
    const fetchQuizQuestionData = () => {
       http.get('/share-quiz/' + id)

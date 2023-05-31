@@ -82,7 +82,7 @@ export const Quizzes = () => {
    }
 
    const previewQuiz = (quizId) => {
-    const url = window.location.origin + '/ShareQuizes/'+quizId;
+    const url = window.location.origin + '/ViewQuizes/'+quizId;
     window.location.href = url;
    }
    
