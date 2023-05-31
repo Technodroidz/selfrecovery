@@ -12,6 +12,7 @@ import {Success} from './payment/Success';
 import {Cancel} from './payment/Cancel';
 // import {CheckoutForm} from './payment/CheckoutForm';
 import {ShareQuizes} from './user/ShareQuizes';
+import {ViewQuizes} from './user/ViewQuizes';
 import {NotFound} from './front/NotFound';
 
 export function App() {
@@ -26,6 +27,7 @@ return (
       <Route path="/Possibilities" element={<Possibilities />}></Route>
       <Route path="/Statistics" element={<Statistics />}></Route>
       <Route path="/ShareQuizes/:id" element={<ShareQuizes />}></Route>
+      <Route path="/ViewQuizes/:id" element={<ViewQuizes />}></Route>
       <Route path="/Profile" element={<Profile />}></Route>
       {/* <Route path="/CheckoutForm" element={<CheckoutForm />}></Route>  */}
       <Route path="/Success" element={<Success />}></Route> 

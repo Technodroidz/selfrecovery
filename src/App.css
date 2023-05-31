@@ -970,6 +970,11 @@ Footer .footer-menu  a:hover {
   border: 1px solid #ffc533cf;
 }
 
+#msform .form-card {
+  text-align: left;
+  padding: 0px 20px;
+}
+
 #msform .action-button {
   width: auto;
   background: #ffc533;
@@ -1106,6 +1111,7 @@ Footer .footer-menu  a:hover {
   margin-top: 1.25rem;
   padding: 15px 20px 15px;
   color: #fff;
+  text-transform: uppercase;
 }
 #msform h5 {
   text-decoration-line: none;

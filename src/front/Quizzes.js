@@ -85,6 +85,7 @@ export const Quizzes = () => {
     const url = window.location.origin + '/ShareQuizes/'+quizId;
     window.location.href = url;
    }
+   
     const submitquiz = () => {
       const user_id = sessioncheck.user_id;
      // console.log(quiz_image);

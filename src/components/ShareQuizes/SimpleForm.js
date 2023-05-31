@@ -5,8 +5,7 @@ const SimpleForm = ({formData, setFormData,handleFormDataChange,onStartQuiz}) =>
 
 
 
-  return <form id="msform">
-   
+  return <form id="msform">   
     <fieldset>
       <div className="form-card">
         <div className="row">
@@ -45,18 +44,7 @@ const SimpleForm = ({formData, setFormData,handleFormDataChange,onStartQuiz}) =>
       </div>
       <input type="button" name="next" className="next action-button mt-4" value="Start Quizes" onClick={onStartQuiz} />
     </fieldset>
-  </form>
-  // return (
-  //     <Container>
-  //     <Form>
-  //       <Form.Group controlId="form.Name">
-  //           <Form.Label>Name</Form.Label>
-  //           <Form.Control type="text" placeholder="Enter name" />
-  //       </Form.Group>
-
-  //     </Form>
-  //   </Container>
-  // );
+  </form>  
 }
 
 

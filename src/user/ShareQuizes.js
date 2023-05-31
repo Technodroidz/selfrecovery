@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import SimpleForm from "../components/SimpleForm";
-import QuizQuestions from "../components/QuizzQuestions";
+import SimpleForm from "../components/ShareQuizes/SimpleForm";
+import QuizQuestions from "../components/ShareQuizes/QuizzQuestions";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ export const ShareQuizes = () => {
 
    useEffect(()=>{
       fetchQuizQuestionData();
-   },[]);
+   },[ ]);
 
    const fetchQuizQuestionData = () => {
       http.get('/share-quiz/' + id)
@@ -86,10 +86,10 @@ export const ShareQuizes = () => {
                         <div className="container-fluid">
                            <div className="row justify-content-center">
                               <div className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 text-center p-0 mt-3 mb-2">
-                                 <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
+                                 <div id='msform' className="card px-0 pt-4 pb-0 mt-3 mb-3">
                                     {showQuiz ? <QuizQuestions quizQuestionsData={quizQuestionsData}/> :
                                        <SimpleForm formData={formData} setFormData={setFormData} handleFormDataChange={handleFormDataChange} onStartQuiz={onStartQuiz} />
-                                    }                                    
+                                    }                                 
                                  </div>
                               </div>
                            </div>
