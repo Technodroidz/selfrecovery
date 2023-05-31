@@ -117,10 +117,9 @@ return (
    <section>
       <div className="container">
          <div className="row justify-content-center">
-         
             <div className="col-md-8 page-box">
                <div className="col-lg-12 text-center page-style2">
-                  <h4><b>Quiz Name:</b> The best essential oil blend for me today.</h4>                 
+                  <h4><b>Quiz Name:</b> The best essential oil blend for me today.</h4>
                </div>
                <div className="container-fluid">
                   <div className="row justify-content-center">
@@ -132,17 +131,17 @@ return (
                               {questions.map((questionss,index)=>( 
                                  <div className="form-card">
                                     <div className="row">
-                                   
                                        <div className="col-12">
                                           <h2 className="fs-title"><b>Question {++x}:</b> {questionss.title}</h2>
                                        </div>
                                        <div className="col-12">
-                                       <ul className="ps-question">
-                                       {Object.entries(questionss.answer).map(([key, value]) => (
-                                          <li  className="active step_1 rounded-pill bg-question text-start" key={key}>{value}</li>
-                                       ))}
-                                       </ul>
-                                         
+
+                                          <ul className="ps-question">
+                                             {Object.entries(questionss.answer).map(([key, value]) => (
+                                             <li  className="active step_1 rounded-pill bg-question text-start" key={key}>{value}</li>
+                                             ))}
+                                          </ul>
+
                                        </div>
                                        
                                     </div>
