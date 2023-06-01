@@ -197,7 +197,7 @@ return (
                               <h5>
                                  <spam>
                                     <Link to={{ pathname: "/Questions/" + allquiz.id }} className="btn btn-outline-primary btn-sm">
-                                    <i class="fa fa-plus"></i> Add Questions</Link>
+                                    <i className="fa fa-plus"></i> Add Questions</Link>
                                  </spam>
                               </h5>
                            </div>

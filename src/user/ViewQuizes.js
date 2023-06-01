@@ -10,8 +10,8 @@ import http from '../http'
 export const ViewQuizes = () => {
    const navigate = useNavigate();
    const {id} = useParams(); 
-   const [questions , setQuestions] = useState([]) 
-   const [quiztitle , setQuizTitle] = useState([]) 
+   const [questions , setQuestions] = useState([]); 
+   const [quiztitle, setQuizTitle] = useState("");
    let x = 0;
    useEffect(()=>{
       fetchQuizQuestionData();
@@ -81,6 +81,7 @@ export const ViewQuizes = () => {
            prevQuestion === 0 ? prevQuestion : prevQuestion - 1
          );
        };
+       
     
       const question = questions[currentQuestion];
 return (
@@ -102,27 +103,36 @@ return (
                        
                            <div id="msform">
                               <fieldset>
-                              {questions.map((questionss,index)=>( 
-                                 <div className="form-card">
-                                    <div className="row">
-                                       <div className="col-12">
-                                          <h2 className="fs-title"><b>Question {++x}:</b> {questionss.title}</h2>
-                                       </div>
-                                       <div className="col-12">
-
-                                          <ul className="ps-question">
-                                             {Object.entries(questionss.answer).map(([key, value]) => (
-                                             <li  className="active step_1 rounded-pill bg-question text-start" key={key}>{value}</li>
-                                             ))}
-                                          </ul>
-
-                                       </div>
-                                       
+                              {questions.length > 0 && currentQuestion < questions.length ? (
+                              <div className="form-card">
+                                 <div className="row">
+                                    <div className="col-12">
+                                    <h2 className="fs-title">
+                                       <b>Question {currentQuestion + 1}:</b> {question.title}
+                                    </h2>
+                                    </div>
+                                    <div className="col-12">
+                                    <ul className="ps-question">
+                                       {question.answer.map((answer, index) => (
+                                          <li className="active step_1 rounded-pill bg-question text-start" key={index}>
+                                          {answer}
+                                          </li>
+                                       ))}
+                                    </ul>
                                     </div>
                                  </div>
-                                 ))} 
-                                 <input type="button" name="previous" class="previous action-button-previous mb-4" value="Previous Question" onClick={handlePrevious}/>
-                                 <input type="button" name="next" class="next action-button mb-4" value="Next Question" onClick={handleNext}/>
+                              </div>
+                              ) : (
+                              <div>No questions found.</div>
+                              )}
+
+                              <input type="button" name="previous" className="previous action-button-previous mb-4" value="Previous Question" onClick={handlePrevious} />
+                              {currentQuestion === questions.length - 1 ? (
+                              <input type="button" name="next" className="next action-button mb-4" value="Finish Quiz" onClick={handleNext} />
+                              ) : (
+                              <input type="button" name="next" className="next action-button mb-4" value="Next Question" onClick={handleNext} />
+                              )}
+
                               </fieldset>
                            </div>
                        
