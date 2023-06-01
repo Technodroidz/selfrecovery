@@ -102,15 +102,16 @@ return (
                        
                            <div id="msform">
                               <fieldset>
+                              {questions.map((questionss,index)=>( 
                                  <div className="form-card">
                                     <div className="row">
                                        <div className="col-12">
-                                          <h2 className="fs-title"><b>Question {++x}:</b> {question.title}</h2>
+                                          <h2 className="fs-title"><b>Question {++x}:</b> {questionss.title}</h2>
                                        </div>
                                        <div className="col-12">
 
                                           <ul className="ps-question">
-                                             {Object.entries(question.answer).map(([key, value]) => (
+                                             {Object.entries(questionss.answer).map(([key, value]) => (
                                              <li  className="active step_1 rounded-pill bg-question text-start" key={key}>{value}</li>
                                              ))}
                                           </ul>
@@ -119,6 +120,7 @@ return (
                                        
                                     </div>
                                  </div>
+                                 ))} 
                                  <input type="button" name="previous" class="previous action-button-previous mb-4" value="Previous Question" onClick={handlePrevious}/>
                                  <input type="button" name="next" class="next action-button mb-4" value="Next Question" onClick={handleNext}/>
                               </fieldset>
