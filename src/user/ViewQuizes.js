@@ -98,8 +98,7 @@ return (
                <div className="container-fluid">
                   <div className="row justify-content-center">
                      <div className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 text-center p-0 mt-3 mb-2">
-                        <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
-                       
+                        <div className="card px-0 pt-4 pb-0 mt-3 mb-3">                       
                            <div id="msform">
                               <fieldset>
                                  <div className="form-card">
@@ -108,15 +107,12 @@ return (
                                           <h2 className="fs-title"><b>Question {++x}:</b> {question.title}</h2>
                                        </div>
                                        <div className="col-12">
-
                                           <ul className="ps-question">
                                              {Object.entries(question.answer).map(([key, value]) => (
                                              <li  className="active step_1 rounded-pill bg-question text-start" key={key}>{value}</li>
                                              ))}
                                           </ul>
-
-                                       </div>
-                                       
+                                       </div>                                       
                                     </div>
                                  </div>
                                  <input type="button" name="previous" class="previous action-button-previous mb-4" value="Previous Question" onClick={handlePrevious}/>
