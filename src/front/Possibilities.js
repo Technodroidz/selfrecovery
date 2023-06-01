@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import Modal from "react-bootstrap/Modal";
 import Multiselect from 'multiselect-react-dropdown';
+import Accordion from 'react-bootstrap/Accordion';
 import Header from '../front/Header';
 import Footer from '../front/Footer';
 export const Possibilities = () => {
@@ -39,6 +40,58 @@ return (
             <div className="col-md-12 page-box">
                <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
+                  <Accordion>
+                        <Accordion.Item eventKey="0">
+                           <Accordion.Header><b>Possibility 1:</b>&nbsp; Alfredo Chicken Pizza </Accordion.Header>
+                           <Accordion.Body>
+                              <div className="Quizzes-q">
+                                 <div className="Quizzes-ans">
+                                    <div className="desgin-option">
+                                    <div className="row">
+                                 <div className="col-3">
+                                    <h6><b>Description:</b> </h6>
+                                 </div>
+                                 <div className="col-9">
+                                    <textarea class="form-control" placeholder="Your choice of crust with alfredo sauce, bacon, seasoned chicken…"  rows="2"></textarea>                                     
+                                 </div>
+                              </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-3"><b>Title Font: </b></div>
+                                          <div className="col-9">
+                                             <select class="form-control">
+                                                <option selected>Select Title Font</option>
+                                                <option value="1">Serif</option>
+                                                <option value="2">Sans-serif</option>
+                                                <option value="3">Cursive</option>
+                                                <option value="4">Fantasy</option>
+                                                <option value="5">Monospace</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-3"><b>Main Font: </b></div>
+                                          <div className="col-9">
+                                             <select class="form-control">
+                                                <option selected>Select Main Font</option>
+                                                <option value="1">Serif</option>
+                                                <option value="2">Sans-serif</option>
+                                                <option value="3">Cursive</option>
+                                                <option value="4">Fantasy</option>
+                                                <option value="5">Monospace</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </Accordion.Body>
+                        </Accordion.Item>
+                     </Accordion>
+
                      <div className="possibility-q">
                         <div className="row">
                            <div className="col-2">
