@@ -61,6 +61,27 @@ return (
             <div className="col-md-12 page-box">
                <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
+                     <div className='mb-5 mt-4'>
+                     <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" name="name"  class="form-control" value={formData.name} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input type="email" name="email"  class="form-control" value={formData.email} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Message:
+        <textarea name="message"  class="form-control" value={formData.message} onChange={handleChange} />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+                     </div>
+                  
                      <Accordion>
                         <Accordion.Item eventKey="0">
                            <Accordion.Header><b>Quiz 1 Title:</b>&nbsp; The best essential oil blend for me... </Accordion.Header>
@@ -108,10 +129,9 @@ return (
                                     <div className="desgin-option">
                                        <div className="row">
                                           <div className="col-12 text-center">
-                                             <button type="submit">Submit</button>
+                                             <button className='btn btn-success btn-sm'>Save & Submit</button></div>
                                           </div>
                                        </div>
-                                    </div>
                                  </div>
                               </div>
                            </Accordion.Body>
