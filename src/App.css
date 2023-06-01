@@ -759,7 +759,7 @@ Footer .footer-menu  a:hover {
   margin-bottom: 15px;
 }
 
-.ltn__myaccount-tab-content-inner input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea {
+.ltn__myaccount-tab-content-inner input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
   background-color: #fff;
   border: 2px solid;
   border-color: #e4ecf2;

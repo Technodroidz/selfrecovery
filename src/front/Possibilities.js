@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import Modal from "react-bootstrap/Modal";
-import Multiselect from 'multiselect-react-dropdown';
 import Accordion from 'react-bootstrap/Accordion';
 import Header from '../front/Header';
 import Footer from '../front/Footer';
@@ -40,48 +39,99 @@ return (
             <div className="col-md-12 page-box">
                <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
-                  <Accordion>
+                     <Accordion>
                         <Accordion.Item eventKey="0">
                            <Accordion.Header><b>Possibility 1:</b>&nbsp; Alfredo Chicken Pizza </Accordion.Header>
                            <Accordion.Body>
                               <div className="Quizzes-q">
                                  <div className="Quizzes-ans">
                                     <div className="desgin-option">
-                                    <div className="row">
-                                 <div className="col-3">
-                                    <h6><b>Description:</b> </h6>
-                                 </div>
-                                 <div className="col-9">
-                                    <textarea class="form-control" placeholder="Your choice of crust with alfredo sauce, bacon, seasoned chicken…"  rows="2"></textarea>                                     
-                                 </div>
-                              </div>
+                                       <div className="row">
+                                          <div className="col-3">
+                                             <h6><b>Possibility:</b> </h6>
+                                          </div>
+                                          <div className="col-9">
+                                             <input type='text' class="form-control" placeholder="Alfredo Chicken Pizza "/>
+                                          </div>
+                                       </div>
                                     </div>
                                     <div className="desgin-option">
                                        <div className="row">
-                                          <div className="col-3"><b>Title Font: </b></div>
+                                          <div className="col-3">
+                                             <h6><b>Description:</b> </h6>
+                                          </div>
+                                          <div className="col-9">
+                                             <textarea class="form-control" placeholder="Your choice of crust with alfredo sauce, bacon, seasoned chicken…"  rows="3"></textarea>                                     
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-3">
+                                             <h6><b>Web Link:  </b></h6>
+                                          </div>
+                                          <div className="col-9">
+                                             <input type="text" placeholder="https://drive.google.com/file/d/14fhi…" class="form-control"/>                                    
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-3">
+                                             <h6><b>Value 1: </b> </h6>
+                                          </div>
+                                          <div className="col-5">
+                                             <input type="text" placeholder="Ranch" class="form-control"/>                                    
+                                          </div>
+                                          <div className="col-1 text-center">
+                                             <h6><b>Score:</b> </h6>
+                                          </div>
+                                          <div className="col-2">
+                                             <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                             </select>
+                                          </div>
+                                          <div className="col-1">
+                                             <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-12 text-right">
+                                             <h6> <img onClick={showModal2} src="assets/img/add-filled.png" alt="quizzes" className="img-fluid"/><b>New Value</b> </h6>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-3">
+                                             <h6><b>Assigned Quizzes:</b> </h6>
+                                          </div>
                                           <div className="col-9">
                                              <select class="form-control">
-                                                <option selected>Select Title Font</option>
-                                                <option value="1">Serif</option>
-                                                <option value="2">Sans-serif</option>
-                                                <option value="3">Cursive</option>
-                                                <option value="4">Fantasy</option>
-                                                <option value="5">Monospace</option>
+                                                <option>Alfredo Chicken Pizza</option>
+                                                <option>How much meat do you like on your…</option>
+                                                <option>Pick your favorite pizza sauces?</option>
+                                                <option>How important is bacon on your…</option>
+                                                <option>How important is cheese on your…</option>
                                              </select>
                                           </div>
                                        </div>
                                     </div>
                                     <div className="desgin-option">
                                        <div className="row">
-                                          <div className="col-3"><b>Main Font: </b></div>
+                                          <div className="col-3">
+                                             <h6><b>Active or Inactive:</b></h6>
+                                          </div>
                                           <div className="col-9">
                                              <select class="form-control">
-                                                <option selected>Select Main Font</option>
-                                                <option value="1">Serif</option>
-                                                <option value="2">Sans-serif</option>
-                                                <option value="3">Cursive</option>
-                                                <option value="4">Fantasy</option>
-                                                <option value="5">Monospace</option>
+                                                <option>Active </option>
+                                                <option>Inactive</option>
                                              </select>
                                           </div>
                                        </div>
@@ -91,275 +141,6 @@ return (
                            </Accordion.Body>
                         </Accordion.Item>
                      </Accordion>
-
-                     <div className="possibility-q">
-                        <div className="row">
-                           <div className="col-2">
-                              <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                              <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                              <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           </div>
-                           <div className="col-3 text-right">
-                              <h4>Possibility 1:</h4>
-                           </div>
-                           <div className="col-7 d-flex">
-                              <input type="text" placeholder="Alfredo Chicken Pizza" class="form-control"/>                                    
-                           </div>
-                        </div>
-                        <div className="possibility-ans">
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2"></div>
-                                 <div className="col-3 text-right">
-                                    <h6><b>Description:</b> </h6>
-                                 </div>
-                                 <div className="col-7 d-flex">
-                                    <textarea class="form-control" placeholder="Your choice of crust with alfredo sauce, bacon, seasoned chicken…"  rows="2"></textarea>                                     
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2"></div>
-                                 <div className="col-3 text-right">
-                                    <h6><b>Web Link:  </b></h6>
-                                 </div>
-                                 <div className="col-7">
-                                    <input type="text" placeholder="https://drive.google.com/file/d/14fhi…" class="form-control"/>                                    
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2 text-right">
-                                    <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                 </div>
-                                 <div className="col-2 text-center">
-                                    <h6><b>Value 1: </b> </h6>
-                                 </div>
-                                 <div className="col-5">
-                                    <input type="text" placeholder="Ranch" class="form-control"/>                                    
-                                 </div>
-                                 <div className="col-1 text-center">
-                                    <h6><b>Score:</b> </h6>
-                                 </div>
-                                 <div className="col-2">
-                                    <select class="form-control">
-                                       <option>1</option>
-                                       <option>2</option>
-                                       <option>3</option>
-                                       <option>4</option>
-                                       <option>5</option>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2 text-right">
-                                    <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                 </div>
-                                 <div className="col-2 text-center">
-                                    <h6><b>Value 1: </b> </h6>
-                                 </div>
-                                 <div className="col-5">
-                                    <input type="text" placeholder="Ranch" class="form-control"/>                                    
-                                 </div>
-                                 <div className="col-1 text-center">
-                                    <h6><b>Score:</b> </h6>
-                                 </div>
-                                 <div className="col-2">
-                                    <select class="form-control">
-                                       <option>1</option>
-                                       <option>2</option>
-                                       <option>3</option>
-                                       <option>4</option>
-                                       <option>5</option>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2 text-right">
-                                    <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                 </div>
-                                 <div className="col-2 text-center">
-                                    <h6><b>Value 1: </b> </h6>
-                                 </div>
-                                 <div className="col-5">
-                                    <input type="text" placeholder="Ranch" class="form-control"/>                                    
-                                 </div>
-                                 <div className="col-1 text-center">
-                                    <h6><b>Score:</b> </h6>
-                                 </div>
-                                 <div className="col-2">
-                                    <select class="form-control">
-                                       <option>1</option>
-                                       <option>2</option>
-                                       <option>3</option>
-                                       <option>4</option>
-                                       <option>5</option>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2 text-right">
-                                    <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                 </div>
-                                 <div className="col-2 text-center">
-                                    <h6><b>Value 1: </b> </h6>
-                                 </div>
-                                 <div className="col-5">
-                                    <input type="text" placeholder="Ranch" class="form-control"/>                                    
-                                 </div>
-                                 <div className="col-1 text-center">
-                                    <h6><b>Score:</b> </h6>
-                                 </div>
-                                 <div className="col-2">
-                                    <select class="form-control">
-                                       <option>1</option>
-                                       <option>2</option>
-                                       <option>3</option>
-                                       <option>4</option>
-                                       <option>5</option>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option">
-                              <div className="row">
-                                 <div className="col-2 text-right">
-                                    <img onClick={showModal2} src="assets/img/add-filled.png" alt="quizzes" className="img-fluid"/>
-                                 </div>
-                                 <div className="col-2 text-center">
-                                    <h6><b>New Value</b> </h6>
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option mt-4">
-                              <div className="row">
-                                 <div className="col-3">
-                                    <h4 className="font-size-19">Assigned Quizzes:</h4>
-                                 </div>
-                                 <div className="col-9">
-                                    <Multiselect
-                                    placeholder="Which Pizza Factory… + 2 More"
-                                    displayValue="key"
-                                    groupBy="cat"
-                                    onKeyPressFn={function noRefCheck(){}}
-                                    onRemove={function noRefCheck(){}}
-                                    onSearch={function noRefCheck(){}}
-                                    onSelect={function noRefCheck(){}}
-                                    options={[
-                                    {
-                                    cat: 'Create New',
-                                    key: 'Option 1'
-                                    },
-                                    {
-                                    cat: 'Create New',
-                                    key: 'Option 2'
-                                    },
-                                    {
-                                    cat: 'Create New',
-                                    key: 'Option 3'
-                                    }
-                                    ]}
-                                    showCheckbox
-                                    showArrow
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                           <div className="possibility-option mt-4">
-                              <div className="row">
-                                 <div className="col-3">
-                                    <h4 className="font-size-19">Active or Inactive:</h4>
-                                 </div>
-                                 <div className="col-9">
-                                    <select class="form-control">
-                                       <option>Active </option>
-                                       <option>Inactive</option>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 1:</b>  How much meat do you like on your…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 2:</b> Pick your favorite pizza sauces?</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 3:</b>  How important is bacon on your…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img  onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 4:</b> How important is cheese on your…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 5:</b>  How important is it to have a simple…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 6:</b>  How important are veggies on your…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 7:</b>  How important is pineapple on your…</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 8:</b> Select your dietary restrictions.</spam>
-                        </h5>
-                     </div>
-                     <div className="Quizzes-q">
-                        <h5>
-                           <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                           <img src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
-                           <spam><b>Possibility 9:</b> Enter your email to subscribe.</spam>
-                        </h5>
-                     </div>
                   </div>
                </div>
                <div className="row justify-content-center">
