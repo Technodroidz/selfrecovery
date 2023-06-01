@@ -161,6 +161,7 @@ return (
             <Nav.Link href="/Designs">Designs</Nav.Link>  
             <Nav.Link href="/Statistics">Statistics</Nav.Link>  
             <Nav.Link href="/Possibilities">Possibilities</Nav.Link>
+            
             {
                 (() => {
                     if(sessioncheck == null) {
@@ -169,7 +170,12 @@ return (
                             )
                         }else {
                             return (
-                             <Nav.Link> Welcome {sessioncheck.first_name}</Nav.Link>
+                              <NavDropdown title="&#127773; Profile" id="basic-nav-dropdown">
+                                 <NavDropdown.Item href="/Profile"> Welcome {sessioncheck.first_name}</NavDropdown.Item>
+                                 <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
+                                 <NavDropdown.Divider />
+                                 <NavDropdown.Item href="/Profile">Log out</NavDropdown.Item>
+                              </NavDropdown>
                             )
                         }
                 })()  

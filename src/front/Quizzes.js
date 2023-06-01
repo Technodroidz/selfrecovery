@@ -183,9 +183,9 @@ return (
                         <div className="row">
                            <div className="col-md-2">
                               <h5>
-                                 <img onClick={() => { deleteQuiz(allquiz.id); }} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                 <img src="assets/img/quizzes-edit.png" alt="quizzes" className="img-fluid"/>
-                                 <img onClick={() => { previewQuiz(allquiz.id); }} src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid"/>
+                                 <img onClick={() => { deleteQuiz(allquiz.id); }} src="assets/img/quizzes-delete.png" title='Delete Quizzes' alt="quizzes" className="img-fluid"/>
+                                 <img src="assets/img/quizzes-edit.png" alt="quizzes" title='Edit Quizzes' className="img-fluid"/>
+                                 <img onClick={() => { previewQuiz(allquiz.id); }} src="assets/img/quizzes-img.png" alt="quizzes" className="img-fluid" title='view Quizzes'/>
                               </h5>
                            </div>
                            <div className="col-md-7">

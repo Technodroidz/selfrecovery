@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Accordion from 'react-bootstrap/Accordion';
 import Header from '../front/Header';
 import Footer from '../front/Footer';
+
 export const Designs = () => {
+   const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: ''
+    });
+  
+    const handleChange = (event) => {
+      setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // Access the form data and perform necessary actions
+      console.log(formData); // For example, log the form data to the console
+      // Make API calls, update state, etc.
+    };
+
+
 return (
 <>
 <Header />
@@ -83,6 +102,13 @@ return (
                                                 <option value="4">Fantasy</option>
                                                 <option value="5">Monospace</option>
                                              </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div className="desgin-option">
+                                       <div className="row">
+                                          <div className="col-12 text-center">
+                                             <button type="submit">Submit</button>
                                           </div>
                                        </div>
                                     </div>
