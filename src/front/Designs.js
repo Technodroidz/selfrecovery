@@ -100,7 +100,7 @@ return (
                                        <div className="row">
                                           <div className="col-3"><b>Title Font: </b></div>
                                           <div className="col-9">
-                                             <select class="form-control">
+                                             <select  class="form-control">
                                                 <option selected>Select Title Font</option>
                                                 <option value="1">Serif</option>
                                                 <option value="2">Sans-serif</option>

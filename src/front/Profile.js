@@ -61,7 +61,7 @@ return (
                                     <div className="ltn__comment-area mb-50">
                                        <div className="ltn-author-introducing clearfix">
                                           <div className="author-img">
-                                             <img src="assets/img/need-help.png" className='img-fluid' alt="Author Image" />
+                                             <img src="assets/img/need-help.png" className='img-fluid' alt="Author Image"/>
                                           </div>
                                           <div className="author-info">
                                              <h2>Rosalina D. William</h2>
@@ -164,6 +164,48 @@ return (
                               <Tab.Pane eventKey="fourth">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <p>The following addresses will be used on the checkout page by default.</p>
+                                    <div className="row">
+                                       <div className="col-md-6 col-12 mb-2">
+                                          <div className="addres-box">
+                                          <h4>
+                                             Billing Address 
+                                             &nbsp; <small>
+                                                <Link to="/">
+                                                edit</Link>
+                                             </small>
+                                          </h4>
+                                          <address>
+                                             <p><strong>Alex Tuntuni</strong></p>
+                                             <p>1355 Market St, Suite 900 San Francisco, CA 94103
+                                             </p>
+                                             <p>Mobile: (123) 456-7890</p>
+                                          </address>
+                                          </div>
+                                       </div>
+                                       <div className="col-md-6 col-12 mb-2">
+                                          <div className="addres-box">
+                                          <h4>
+                                             Shipping Address 
+                                             &nbsp;<small>
+                                                <Link to="/">
+                                                edit</Link>
+                                             </small>
+                                          </h4>
+                                          <address>
+                                             <p><strong>Alex Tuntuni</strong></p>
+                                             <p>1355 Market St, Suite 900
+                                                San Francisco, CA 94103
+                                             </p>
+                                             <p>Mobile: (123) 456-7890</p>
+                                          </address>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </Tab.Pane>
+                              <Tab.Pane eventKey="fifth">
+                                 <div className="ltn__myaccount-tab-content-inner">
+                                    <p>The following addresses will be used on the checkout page by default.</p>
                                     <div className="ltn__form-box">
                                        <form action="#">
                                           <div className="row mb-50">
@@ -191,7 +233,7 @@ return (
                                     </div>
                                  </div>
                               </Tab.Pane>
-                              <Tab.Pane eventKey="fifth">
+                              <Tab.Pane eventKey="sixth">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <div className="pricing-table">
                                        <div className="container">
@@ -245,21 +287,6 @@ return (
                                     </div>
                                  </div>
                               </Tab.Pane>
-                              <Tab.Pane eventKey="sixth">
-                                 <div className="ltn__myaccount-tab-content-inner">
-                                    <div className="account-login-inner">
-                                       <form action="#" className="ltn__form-box contact-form-box">
-                                          <h5 className="mb-30">Change Password</h5>
-                                          <input type="password" name="password" placeholder="Current Password*"/>
-                                          <input type="password" name="password" placeholder="New Password*"/>
-                                          <input type="password" name="password" placeholder="Confirm New Password*"/>
-                                          <div className="btn-wrapper mt-0">
-                                             <button className="btn btn-primary btn-block" type="submit">Save Changes</button>
-                                          </div>
-                                       </form>
-                                    </div>
-                                 </div>
-                              </Tab.Pane>
                               <Tab.Pane eventKey="7th">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <div className="account-login-inner">
@@ -275,6 +302,7 @@ return (
                                     </div>
                                  </div>
                               </Tab.Pane>
+                              
                            </Tab.Content>
                            </Col>
                         </Row>
