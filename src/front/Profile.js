@@ -30,7 +30,7 @@ return (
                                  <Nav.Link eventKey="second">My Quizzes <i className="fa fa-list"></i></Nav.Link>
                               </Nav.Item>
                               <Nav.Item>
-                                 <Nav.Link eventKey="third">API Access <i className="fa fa-list"></i></Nav.Link>
+                                 <Nav.Link eventKey="third">API Access <i className="fa fa-key"></i></Nav.Link>
                               </Nav.Item>
                               <Nav.Item>
                                  <Nav.Link eventKey="fourth">Address <i className="fa fa-map-marker"></i></Nav.Link>
