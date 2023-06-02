@@ -98,7 +98,7 @@ export const Header = () => {
             if(res.status === 200){
            const userdata = JSON.stringify(res.data);
            const uservalue = JSON.parse(userdata);
-           console.log(uservalue.data);
+          // console.log(uservalue.data);
            const usersess = uservalue.data;
            ReactSession.setStoreType("localStorage");
            ReactSession.set("user", usersess);
@@ -124,6 +124,19 @@ export const Header = () => {
       });
   
    } 
+
+   const logout = () => {
+      ReactSession.setStoreType("localStorage");
+      ReactSession.remove("user");
+      swal({ 
+         title: "Success!",
+         text: 'Logout Successful',
+         type: "success"}).then(okay => {
+         if (okay) {
+            navigate('/');
+         }
+         });
+   }
 
 //    var loginSignup = " <li><Link className='getstarted scrollto' onClick={showModal}>Login</Link></li>"+
 //  "<li><Link className='getstarted2 scrollto' onClick={showModal1}>Sign up</Link></li>";
@@ -174,7 +187,7 @@ return (
                                  {/* <NavDropdown.Item href="/Profile"> Welcome {sessioncheck.first_name}</NavDropdown.Item> */}
                                  <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
                                  <NavDropdown.Divider />
-                                 <NavDropdown.Item href="/Profile">Log out</NavDropdown.Item>
+                                 <NavDropdown.Item onClick={logout}>Log out</NavDropdown.Item>
                               </NavDropdown>
                             )
                         }

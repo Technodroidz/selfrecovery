@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -7,8 +7,127 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Header from './Header';
 import Footer from './Footer';
+import {useEffect, useState} from 'react';
+import swal from 'sweetalert';
+import { ReactSession } from 'react-client-session';
+import http from '../http'
 import Accordion from 'react-bootstrap/Accordion'
 export const Profile = () => {
+   const navigate = useNavigate();  
+   const [userprofile , setUserProfile] = useState([]); 
+   const[alluserquizzes, setUserQuizzes] = useState([]);
+   const[apiaccess, setApiAccess] = useState([]);
+   const [new_password,setNewPassword] = useState();
+    const [old_password,setOldPassword] = useState();
+    const [confirm_new_password,setConfirmNewPassword] = useState();
+
+   ReactSession.setStoreType("localStorage");
+   const sessioncheck = ReactSession.get("user");
+   let x = 0;
+   let y = 0;
+   useEffect(()=>{
+      fetchUserProfileData();
+      fetchAllUserQuizzes();
+   },[]);
+
+   const fetchUserProfileData = () => {
+      http.post('/user-profile',{user_id:sessioncheck.user_id})
+      .then(res=>{
+         try{
+            if(res.status === 200){
+           // console.log(res.data.data);
+           setUserProfile(res.data.data); 
+         }else{
+            swal("Something Wrong"); 
+         }
+      }catch(e){
+         swal("Something Wrong");    
+         }
+         }).catch((e) => {
+         swal("Something Wrong");
+      });
+   }
+
+   const fetchAllUserQuizzes = () => {
+      if(sessioncheck == null){
+         swal("Please Login");  
+         navigate('/');
+      }else{
+         const user_id = sessioncheck.user_id;
+         http.post('/fetch-user-quiz',{user_id:user_id})
+         .then(res=>{
+            try{
+              // console.log(res);
+               if(res.status === 200){
+              setUserQuizzes(res.data.data);
+            }else{
+               swal("Something Wrong"); 
+            }
+          }catch(e){
+               swal("Something Wrong");    
+            }
+            }).catch((e) => {
+               swal("Something Wrong");
+         });
+      }
+   }
+
+   const fetchApiDetails = () => {
+      const user_id = sessioncheck.user_id;
+      http.post('/fetch-user-api-details', { user_id: user_id })
+        .then(res => {
+          try {
+            if (res.status === 200) {
+              if (res.data.success === true && res.data.data === null) {
+                swal("You have no API access");
+              } else {
+                setApiAccess(res.data.data);
+              }
+            } else {
+              swal("Something went wrong");
+            }
+          } catch (e) {
+            swal("Something went wrong");
+          }
+        })
+        .catch(() => {
+          swal("Something went wrong");
+        });
+    }
+
+   const changePassword = () => {
+      const user_id = sessioncheck.user_id;
+      if(new_password == null){
+         return swal("New password is mandatory");
+      }
+      if(old_password == null){
+         return swal("Current password is mandatory");
+      }
+      if(confirm_new_password == null){
+         return swal("Current new password is mandatory");
+      } 
+      if(confirm_new_password !== new_password){
+         return swal("New password and confirm new password does not match");
+      } 
+      
+      http.post('/change-password',{user_id:user_id,new_password:new_password,old_password:old_password})
+      .then(res=>{
+         try{
+           // console.log(res);
+            if(res.status === 200){
+               swal(res.data.message);
+            }else{
+               swal("Something Wrong"); 
+            }
+         }catch(e){
+            swal(res.data.message);    
+            }
+         }).catch((e) => {
+            swal("Something Wrong");
+      });
+   } 
+    
+
 return (
 <>
 <Header />
@@ -30,14 +149,14 @@ return (
                                  <Nav.Link eventKey="second">My Quizzes <i className="fa fa-list"></i></Nav.Link>
                               </Nav.Item>
                               <Nav.Item>
-                                 <Nav.Link eventKey="third">API Access <i className="fa fa-key"></i></Nav.Link>
+                                 <Nav.Link onClick={fetchApiDetails} eventKey="third">API Access <i className="fa fa-key"></i></Nav.Link>
                               </Nav.Item>
-                              <Nav.Item>
+                              {/* <Nav.Item>
                                  <Nav.Link eventKey="fourth">Address <i className="fa fa-map-marker"></i></Nav.Link>
-                              </Nav.Item>
-                              <Nav.Item>
+                              </Nav.Item> */}
+                              {/* <Nav.Item>
                                  <Nav.Link eventKey="fifth">Account Details <i className="fa fa-user"></i></Nav.Link>
-                              </Nav.Item>
+                              </Nav.Item> */}
                               <Nav.Item>
                                  <Nav.Link eventKey="sixth">Plan <i className="fa fa-heart"></i></Nav.Link>
                               </Nav.Item>
@@ -51,20 +170,16 @@ return (
                               <Tab.Pane eventKey="first">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <p>
-                                       Hello <strong>UserName</strong> (not <strong>UserName</strong>? 
-                                       <small>
-                                          <Link to="/">
-                                          Log out</Link>
-                                       </small>
-                                       )
+                                     <strong>Profile Details</strong>
                                     </p>
+                                    {userprofile.map((profiledata,index)=>(
                                     <div className="ltn__comment-area mb-50">
                                        <div className="ltn-author-introducing clearfix">
                                           <div className="author-img">
                                              <img src="assets/img/need-help.png" className='img-fluid' alt="Author Image"/>
                                           </div>
                                           <div className="author-info">
-                                             <h2>Rosalina D. William</h2>
+                                             <h2>{profiledata.first_name+' '+profiledata.last_name}</h2>
                                              <div className="footer-address">
                                                 <ul>
                                                    <li>
@@ -72,7 +187,7 @@ return (
                                                          <i className="fa fa-map-marker"></i>
                                                       </div>
                                                       <div className="footer-address-info">
-                                                         <p>Brooklyn, New York, United States</p>
+                                                         <p>{profiledata.address}</p>
                                                       </div>
                                                    </li>
                                                    <li>
@@ -81,8 +196,8 @@ return (
                                                       </div>
                                                       <div className="footer-address-info">
                                                          <p>
-                                                            <Link to="tel:+0123-456789">
-                                                            +0123-456789</Link>
+                                                            <Link to={`tel:${profiledata.phone}`}>
+                                                            {profiledata.phone}</Link>
                                                          </p>
                                                       </div>
                                                    </li>
@@ -92,8 +207,8 @@ return (
                                                       </div>
                                                       <div className="footer-address-info">
                                                          <p>
-                                                            <Link to="mailto:example@example.com">
-                                                            example@example.com</Link>
+                                                            <Link to={`mailto:${profiledata.email}`}>
+                                                            {profiledata.email}</Link>
                                                          </p>
                                                       </div>
                                                    </li>
@@ -102,6 +217,7 @@ return (
                                           </div>
                                        </div>
                                     </div>
+                                   ))} 
                                  </div>
                               </Tab.Pane>
                               <Tab.Pane eventKey="second">                                 
@@ -109,59 +225,58 @@ return (
                                     <p>Your Select Quizzes </p>
                                     <div className="account-login-inner">
                                        <Accordion>
-                                          <Accordion.Item eventKey="0">
-                                             <Accordion.Header><b>Quiz 1:</b>&nbsp; The perfect bike for me.</Accordion.Header>
+                                       {alluserquizzes.map((allquiz,index)=>(
+                                          <Accordion.Item eventKey={x++}>
+                                             <Accordion.Header><b>Quiz {++y}:</b>&nbsp; {allquiz.quiz_name}.</Accordion.Header>
                                              <Accordion.Body>
                                                 <div className="qus-tab">
-                                                   <h6><b>Question 1:</b> The best make up brush for oily face.</h6>
-                                                   <h6><b>Answer:</b> A</h6>
                                                    <h6><b>Total Participants:</b> 100</h6>
-                                                   <h6><b>Most Preferable Answer:</b> D</h6>
                                                 </div>                                                
                                              </Accordion.Body>
                                           </Accordion.Item>
-                                          <Accordion.Item eventKey="1">
-                                             <Accordion.Header><b>Quiz 2:</b>&nbsp; The best essential oil blend for me today.</Accordion.Header>
-                                             <Accordion.Body>
-                                                <div className="qus-tab mb-2">
-                                                   <h6><b>Question 1:</b> Good brand for clothing material.</h6>
-                                                   <h6><b>Answer:</b> B</h6>
-                                                   <h6><b>Total Participants:</b> 20</h6>
-                                                   <h6><b>Most Preferable Answer:</b> C</h6>
-                                                </div> 
-                                                <div className="qus-tab mb-2">
-                                                   <h6><b>Question 1:</b> Good brand for clothing material.</h6>
-                                                   <h6><b>Answer:</b> B</h6>
-                                                   <h6><b>Total Participants:</b> 20</h6>
-                                                   <h6><b>Most Preferable Answer:</b> C</h6>
-                                                </div>                                                
-                                             </Accordion.Body>
-                                          </Accordion.Item>
+                                       ))}
                                        </Accordion>
                                     </div>
                                  </div>
                               </Tab.Pane>
                               <Tab.Pane eventKey="third">
                               <div className="ltn__myaccount-tab-content-inner">
-                                    <p>API Access  </p>
-                                    <div className="account-login-inner">
-                                       <Accordion>
-                                          <Accordion.Item eventKey="0">
-                                             <Accordion.Header><b>API Name:</b>&nbsp; The perfect bike for me.</Accordion.Header>
-                                             <Accordion.Body>
-                                                <div className="qus-tab">
-                                                   <h6><b>API Name:</b> The best make up brush for oily face.</h6>
-                                                   <h6><b>API Url:</b> www.google.com</h6>
-                                                   <h6><b>Parameter:</b> Ueserid</h6>
-                                                   <h6><b>Response:</b> D</h6>
-                                                </div>                                                
-                                             </Accordion.Body>
-                                          </Accordion.Item>                                          
-                                       </Accordion>
-                                    </div>
-                                 </div>
+                              <p>API Access</p>
+                              <div className="account-login-inner">
+                                 <Accordion>
+                                    {apiaccess && apiaccess.length > 0 ? (
+                                    apiaccess.map((allapi, index) => (
+                                       <Accordion.Item eventKey={x++}>
+                                          <Accordion.Header>
+                                          <b>API Name:</b>&nbsp; {allapi.name}.
+                                          </Accordion.Header>
+                                          <Accordion.Body>
+                                          <div className="qus-tab">
+                                             <h6>
+                                                <b>API Name:</b>
+                                                {allapi.name}.
+                                             </h6>
+                                             <h6>
+                                                <b>API Url:</b> {allapi.url}
+                                             </h6>
+                                             <h6>
+                                                <b>Parameter:</b> {allapi.params}
+                                             </h6>
+                                             <h6>
+                                                <b>Response:</b> {allapi.response}
+                                             </h6>
+                                          </div>
+                                          </Accordion.Body>
+                                       </Accordion.Item>
+                                    ))
+                                    ) : (
+                                    <p>No API access available.</p>
+                                    )}
+                                 </Accordion>
+                              </div>
+                              </div>
                               </Tab.Pane>
-                              <Tab.Pane eventKey="fourth">
+                              {/* <Tab.Pane eventKey="fourth">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <p>The following addresses will be used on the checkout page by default.</p>
                                     <div className="row">
@@ -232,7 +347,7 @@ return (
                                        </form>
                                     </div>
                                  </div>
-                              </Tab.Pane>
+                              </Tab.Pane> */}
                               <Tab.Pane eventKey="sixth">
                                  <div className="ltn__myaccount-tab-content-inner">
                                     <div className="pricing-table">
@@ -292,11 +407,11 @@ return (
                                     <div className="account-login-inner">
                                        <form action="#" className="ltn__form-box contact-form-box">
                                           <h5 className="mb-30">Change Password</h5>
-                                          <input type="password" name="password" placeholder="Current Password*"/>
-                                          <input type="password" name="password" placeholder="New Password*"/>
-                                          <input type="password" name="password" placeholder="Confirm New Password*"/>
+                                          <input type="password" name="old_password" placeholder="Current Password*" onChange={e=>setOldPassword(e.target.value)}/>
+                                          <input type="password" name="new_password" placeholder="New Password*" onChange={e=>setNewPassword(e.target.value)}/>
+                                          <input type="password" name="confirm_new_password" placeholder="Confirm New Password*" onChange={e=>setConfirmNewPassword(e.target.value)}/>
                                           <div className="btn-wrapper mt-0">
-                                             <button className="btn btn-primary btn-block" type="submit">Save Changes</button>
+                                             <button className="btn btn-primary btn-block" type="button" onClick={changePassword}>Save Changes</button>
                                           </div>
                                        </form>
                                     </div>
