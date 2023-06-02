@@ -170,8 +170,8 @@ return (
                             )
                         }else {
                             return (
-                              <NavDropdown title="&#127773; Profile" id="basic-nav-dropdown">
-                                 <NavDropdown.Item href="/Profile"> Welcome {sessioncheck.first_name}</NavDropdown.Item>
+                              <NavDropdown title={<span>&#127773; Welcome {sessioncheck.first_name}</span>} id="basic-nav-dropdown">
+                                 {/* <NavDropdown.Item href="/Profile"> Welcome {sessioncheck.first_name}</NavDropdown.Item> */}
                                  <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
                                  <NavDropdown.Divider />
                                  <NavDropdown.Item href="/Profile">Log out</NavDropdown.Item>
