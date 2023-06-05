@@ -78,12 +78,12 @@ return (
                                           <div className="col-3"><b>Title Font: </b></div>
                                           <div className="col-9">
                                              <select value={formData.titlefont} onChange={handleChange} class="form-control">
-                                                <option selected>Select Title Font</option>
-                                                <option value="1">Serif</option>
-                                                <option value="2">Sans-serif</option>
-                                                <option value="3">Cursive</option>
-                                                <option value="4">Fantasy</option>
-                                                <option value="5">Monospace</option>
+                                                <option>Select Title Font</option>
+                                                <option value="Serif">Serif</option>
+                                                <option value="Sans-serif">Sans-serif</option>
+                                                <option value="Cursive">Cursive</option>
+                                                <option value="Fantasy">Fantasy</option>
+                                                <option value="Monospace">Monospace</option>
                                              </select>
                                           </div>
                                        </div>
@@ -93,12 +93,12 @@ return (
                                           <div className="col-3"><b>Main Font: </b></div>
                                           <div className="col-9">
                                              <select  value={formData.mainfont} onChange={handleChange} class="form-control">
-                                                <option selected>Select Main Font</option>
-                                                <option value="1">Serif</option>
-                                                <option value="2">Sans-serif</option>
-                                                <option value="3">Cursive</option>
-                                                <option value="4">Fantasy</option>
-                                                <option value="5">Monospace</option>
+                                                <option>Select Main Font</option>
+                                                <option value="Serif">Serif</option>
+                                                <option value="Sans-serif">Sans-serif</option>
+                                                <option value="Cursive">Cursive</option>
+                                                <option value="Fantasy">Fantasy</option>
+                                                <option value="Monospace">Monospace</option>
                                              </select>
                                           </div>
                                        </div>
