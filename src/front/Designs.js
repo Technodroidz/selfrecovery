@@ -6,9 +6,8 @@ import Footer from '../front/Footer';
 
 export const Designs = () => {
    const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      message: ''
+      titlefont: '',
+      mainfont: ''
     });
   
     const handleChange = (event) => {
@@ -17,9 +16,7 @@ export const Designs = () => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      // Access the form data and perform necessary actions
-      console.log(formData); // For example, log the form data to the console
-      // Make API calls, update state, etc.
+      console.log(formData);
     };
 
 
@@ -61,31 +58,11 @@ return (
             <div className="col-md-12 page-box">
                <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
-                     <div className='mb-5 mt-4'>
-                     <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name"  class="form-control" value={formData.name} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" name="email"  class="form-control" value={formData.email} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Message:
-        <textarea name="message"  class="form-control" value={formData.message} onChange={handleChange} />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
-                     </div>
-                  
                      <Accordion>
                         <Accordion.Item eventKey="0">
                            <Accordion.Header><b>Quiz 1 Title:</b>&nbsp; The best essential oil blend for me... </Accordion.Header>
                            <Accordion.Body>
+                            <form onSubmit={handleSubmit}>
                               <div className="Quizzes-q">
                                  <div className="Quizzes-ans">
                                     <div className="desgin-option">
@@ -96,11 +73,11 @@ return (
                                           </div>
                                        </div>
                                     </div>
-                                    <div className="desgin-option">
+                                    <div className="desgin-option">                                    
                                        <div className="row">
                                           <div className="col-3"><b>Title Font: </b></div>
                                           <div className="col-9">
-                                             <select  class="form-control">
+                                             <select value={formData.titlefont} onChange={handleChange} class="form-control">
                                                 <option selected>Select Title Font</option>
                                                 <option value="1">Serif</option>
                                                 <option value="2">Sans-serif</option>
@@ -115,7 +92,7 @@ return (
                                        <div className="row">
                                           <div className="col-3"><b>Main Font: </b></div>
                                           <div className="col-9">
-                                             <select class="form-control">
+                                             <select  value={formData.mainfont} onChange={handleChange} class="form-control">
                                                 <option selected>Select Main Font</option>
                                                 <option value="1">Serif</option>
                                                 <option value="2">Sans-serif</option>
@@ -129,11 +106,12 @@ return (
                                     <div className="desgin-option">
                                        <div className="row">
                                           <div className="col-12 text-center">
-                                             <button className='btn btn-success btn-sm'>Save & Submit</button></div>
+                                             <button  type="submit" className='btn btn-success btn-sm'>Save & Submit</button></div>
                                           </div>
                                        </div>
                                  </div>
                               </div>
+                            </form>
                            </Accordion.Body>
                         </Accordion.Item>
                      </Accordion>
