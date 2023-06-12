@@ -1,19 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import Modal from "react-bootstrap/Modal";
 import Accordion from 'react-bootstrap/Accordion';
 import Header from '../front/Header';
 import Footer from '../front/Footer';
+import PossibilitiesComponent from "./PossibilitiesComponent";
+import { Form, Formik, useFormik } from "formik";
+import { QuestionValidationSchema } from "../utils/validations/QuestionValidationSchema";
+import swal from 'sweetalert';
+import http from '../http'
+
 export const Possibilities = () => {
-// modal
-const [isOpen2, setIsOpen2] = React.useState(false);
-const showModal2 = () => { setIsOpen2(true);};
-const hideModal2 = () => { setIsOpen2(false);};
 // modal
 const [isOpen3, setIsOpen3] = React.useState(false);
 const showModal3 = () => { setIsOpen3(true);};
 const hideModal3 = () => { setIsOpen3(false);};
+
+
+const [numPossibilities, setNumPossibilities] = useState(1);
+
+const navigate = useNavigate();
+const {id} = useParams(); 
+const submitquestion = (values) => {
+ const dataArray = values.Possibilities;
+console.log(dataArray);
+}
+
 return (
 <>
 <Header />
@@ -36,127 +49,129 @@ return (
             </div>
          </div>
          <div className="row justify-content-center mt-3">
-            <div className="col-md-12 page-box">
-               <div className="row justify-content-center">
+              <div className="col-md-12 page-box">
+                <div className="row justify-content-center">
                   <div className="col-md-8 mt-4">
-                     <Accordion>
-                        <Accordion.Item eventKey="0">
-                           <Accordion.Header><b>Possibility 1:</b>&nbsp; Alfredo Chicken Pizza </Accordion.Header>
-                           <Accordion.Body>
-                              <div className="Quizzes-q">
-                                 <div className="Quizzes-ans">
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Possibility:</b> </h6>
-                                          </div>
-                                          <div className="col-9">
-                                             <input type='text' class="form-control" placeholder="Alfredo Chicken Pizza "/>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Description:</b> </h6>
-                                          </div>
-                                          <div className="col-9">
-                                             <textarea class="form-control" placeholder="Your choice of crust with alfredo sauce, bacon, seasoned chicken…"  rows="3"></textarea>                                     
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Web Link:  </b></h6>
-                                          </div>
-                                          <div className="col-9">
-                                             <input type="text" placeholder="https://drive.google.com/file/d/14fhi…" class="form-control"/>                                    
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Value 1: </b> </h6>
-                                          </div>
-                                          <div className="col-5">
-                                             <input type="text" placeholder="Ranch" class="form-control"/>                                    
-                                          </div>
-                                          <div className="col-1 text-center">
-                                             <h6><b>Score:</b> </h6>
-                                          </div>
-                                          <div className="col-2">
-                                             <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                             </select>
-                                          </div>
-                                          <div className="col-1">
-                                             <img onClick={showModal2} src="assets/img/quizzes-delete.png" alt="quizzes" className="img-fluid"/>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-12 text-right">
-                                             <h6> <img onClick={showModal2} src="assets/img/add-filled.png" alt="quizzes" className="img-fluid"/><b>New Value</b> </h6>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Assigned Quizzes:</b> </h6>
-                                          </div>
-                                          <div className="col-9">
-                                             <select class="form-control">
-                                                <option>Alfredo Chicken Pizza</option>
-                                                <option>How much meat do you like on your…</option>
-                                                <option>Pick your favorite pizza sauces?</option>
-                                                <option>How important is bacon on your…</option>
-                                                <option>How important is cheese on your…</option>
-                                             </select>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div className="desgin-option">
-                                       <div className="row">
-                                          <div className="col-3">
-                                             <h6><b>Active or Inactive:</b></h6>
-                                          </div>
-                                          <div className="col-9">
-                                             <select class="form-control">
-                                                <option>Active </option>
-                                                <option>Inactive</option>
-                                             </select>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </Accordion.Body>
-                        </Accordion.Item>
-                     </Accordion>
-                  </div>
-               </div>
-               <div className="row justify-content-center">
-                  <div className="col-md-4 mt-5">
-                     <div className="add-quizzes">
-                        <Link onClick={showModal3}>
-                        <img src="assets/img/add-filled.png" alt="add-filled" className="img-fluid"/>
-                        <h5>New Possibility</h5>
+                    <Formik
+                      initialValues={{
+                        Possibilities:[
+                          {
+                           Possibilitytitle : "",
+                           Description: "",                           
+                           WebLink: "",
+                           AssignedQuizzes: "",
+                           ActiveOrInactive: "",
+                           options: [{
+                              Value : "",
+                              score: "",
+                            }],
+                          },
+                        ]
+                      }}
+                      onSubmit={submitquestion}
+                      validationSchema={QuestionValidationSchema}
+                    >
+                      {({
+                        values,
+                        setFieldValue,
+                        isSubmitting,
+                        dirty,
+                        isValid
+                      }) => {
+                        return (
+                        <Form>
+                    <div>
+                      {
+                        Array.from({length:numPossibilities}).map((_,index) => {
+                          return (
+                            <>
+                            <PossibilitiesComponent
+                              key={index}
+                              index={index}
+                              values = {values}
+                              setFieldValue = {setFieldValue}
+                            />
+
+                            {
+                              index !== 0 && (
+                                <div className="row justify-content-center mt-4">
+                                  <div className="col-md-6 text-center">
+                                    <button
+                                      type="submit"
+                                      onClick={() => {
+                                        setNumPossibilities(numPossibilities - 1);
+                                        values.Possibilities.splice(index, 1);
+                                        setFieldValue("Possibilities", values.Possibilities);
+                                      }
+                                    }
+                                      className="btn-web">
+                                      <img
+                                        src="../assets/img/fluent_delete-24-filled.png"
+                                        alt="down"
+                                        style={{ width: "20px" }}
+                                        className="img-fluid"
+                                      />{" "}
+                                      Delete Question
+                                    </button>
+                                  </div>
+                                </div>
+                              )
+                            }
+                            </>
+                            
+                          );
+                        })
+                      }
+                      <div className="mt-5 text-center">
+                        <button 
+                        className="btn btn-success" 
+                        type="submit"
+                        disabled={isSubmitting || !dirty || !isValid}
+                        >Save Questions</button>
+                      </div>
+                      
+                      <div className="add-quizzes mt-5">
+                        <Link
+                          to=""
+                          className="myButton appendbtn"
+                          onClick={() =>{
+                            setNumPossibilities(numPossibilities + 1);
+                            setFieldValue("Possibilities", [
+                              ...values.Possibilities,
+                              {
+                                 Possibilitytitle : "",
+                                 Description: "",                           
+                                 WebLink: "",
+                                 AssignedQuizzes: "",
+                                 ActiveOrInactive: "",
+                                 options: [{
+                                    title: "",
+                                    score: "",
+                                  }],
+                                },
+                            ]);
+                          }}
+                        >
+                          <img
+                            src="../assets/img/add-filled.png"
+                            alt="add-filled"
+                            className="img-fluid"
+                          />
+                          <h5>New Possibility </h5>
                         </Link>
-                     </div>
+                      </div>
+                    </div>
+                    </Form>
+                      )}}
+                    </Formik>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
-         </div>
+            
       </div>
    </section>
+   
 </main>
 <Footer />
 <Modal show={isOpen3} onHide={hideModal3} >

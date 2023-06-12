@@ -9,6 +9,7 @@ export const Designs = () => {
       titlefont: '',
       mainfont: ''
     });
+    console.log(formData)
   
     const handleChange = (event) => {
       setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -92,9 +93,9 @@ return (
                                        <div className="row">
                                           <div className="col-3"><b>Main Font: </b></div>
                                           <div className="col-9">
-                                             <select  value={formData.mainfont} onChange={handleChange} class="form-control">
+                                             <select onChange={handleChange} class="form-control">
                                                 <option>Select Main Font</option>
-                                                <option value="Serif">Serif</option>
+                                                <option value={formData.mainfont}>Serif</option>
                                                 <option value="Sans-serif">Sans-serif</option>
                                                 <option value="Cursive">Cursive</option>
                                                 <option value="Fantasy">Fantasy</option>
@@ -106,9 +107,10 @@ return (
                                     <div className="desgin-option">
                                        <div className="row">
                                           <div className="col-12 text-center">
-                                             <button  type="submit" className='btn btn-success btn-sm'>Save & Submit</button></div>
+                                             <button  type="submit" className='btn btn-success btn-sm'>Save & Submit</button>
                                           </div>
                                        </div>
+                                    </div>
                                  </div>
                               </div>
                             </form>
