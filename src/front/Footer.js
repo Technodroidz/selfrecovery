@@ -133,6 +133,8 @@ const handleSaveClick = () => {
          }  
    }
 
+   
+
 
 return (
 <>
@@ -310,7 +312,7 @@ return (
          </div>
       </div>      
       <div className="row justify-content-center mt-4 mb-5">
-         <div className="col-md-6">
+         <div className="col-md-8">
             <div className="row justify-content-center">
                <div className="account-login-inner">
                {alluserquizzes.map((allquiz,index)=>(
