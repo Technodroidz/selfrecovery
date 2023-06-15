@@ -25,7 +25,8 @@ const {id} = useParams();
 const submitquestion = (values) => {
  const dataArray = values.Possibilities;
 console.log(dataArray);
-
+ 
+} 
 
 
 return (
