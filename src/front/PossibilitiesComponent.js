@@ -117,13 +117,13 @@ return (
                            <Field
                                  as="select"
                                  className="form-control mt-2"
-                                 name={`Possibilities[${index}].options[${index}].ActiveOrInactive`}
+                                 name={`Possibilities[${index}].ActiveOrInactive`}
                                  >
                                  <option value="">Select option</option>
                                  <option value='Active'>Active</option>
                                  <option value='Inactive'>Inactive</option>
                               </Field>
-                              <ErrorMessage name={`Possibilities[${index}].options[${index}].ActiveOrInactive`} component="div" className="text-danger" />
+                              <ErrorMessage name={`Possibilities[${index}].ActiveOrInactive`} component="div" className="text-danger" />
                            </div>
                         </div>
                      </div>

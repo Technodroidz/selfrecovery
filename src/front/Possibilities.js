@@ -23,7 +23,31 @@ const [numPossibilities, setNumPossibilities] = useState(1);
 const navigate = useNavigate();
 const submitquestion = (values) => {
  const dataArray = values.Possibilities;
-console.log(dataArray);
+//console.log(dataArray);
+http.post('/add-possibilities',{data:dataArray})
+    .then(res=>{
+      try{
+        //  console.log(res);
+          if(res.status === 200){
+        // swal(res.data.message);
+          swal({ 
+          title: "Success!",
+          text: res.data.message,
+          type: "success"}).then(okay => {
+          if (okay) {
+            window.location.reload();
+          }
+          });
+          navigate('/Possibilities');
+      }else{
+          swal("Something Wrong"); 
+      }
+    }catch(e){
+        swal("Something Wrong");    
+      }
+      }).catch((e) => {
+        swal("Something Wrong");
+    });
  
 } 
 
