@@ -101,7 +101,6 @@ export const ShareQuizes = () => {
                      <div className="col-md-8 page-box">
                         <div className="col-lg-12 text-center page-style2">
                            <h4><b>Quiz Name:</b> {quiztitle.quiz_title}</h4>
-                           {/* <h4 className="mt-4 mb-3">Add/edit questions and answers for your quiz. Assign values to each possible answer.</h4> */}
                         </div>
                         <div className="container-fluid">
                            <div className="row justify-content-center">

@@ -17,7 +17,7 @@ return <div>
                   {questionData.input_type === 'radio' ? (
                   questionData.options.map((item, optionIndex) => (
                   <li key={`option-${optionIndex}`} className="active step_1 rounded-pill bg-question text-start">
-                    <input type="radio" id="opt_1" name="stp_1_select_option" value="A place where people don’t question my authority" />
+                    <input type="radio" id="opt_1" name="stp_1_select_option" />
                      <label>{item}</label>
                   </li>
                   ))
@@ -26,7 +26,7 @@ return <div>
                   (
                   questionData.options.map((item, optionIndex) => (
                   <li key={`option-${optionIndex}`} className="active step_1 rounded-pill bg-question text-start">
-                     <input type="checkbox" id="opt_1" name="stp_1_select_option" value="A place where people don’t question my authority" />
+                     <input type="checkbox" id="opt_2" name="stp_2_select_option" />
                      <label>{item}</label>
                   </li>
                   ))
