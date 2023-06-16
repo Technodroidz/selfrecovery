@@ -133,8 +133,17 @@ const handleSaveClick = () => {
          }  
    }
 
-   
+   const inputRef = useRef(null);
 
+   const handleCopy = async () => {
+     try {
+       const inputValue = inputRef.current.value;
+       await navigator.clipboard.writeText(inputValue);
+       console.log('Text copied to clipboard:', inputValue);
+     } catch (error) {
+       console.error('Failed to copy text:', error);
+     }
+   };
 
 return (
 <>
@@ -325,14 +334,15 @@ return (
                                  <div className="possibility-ans">
                                     <div className="possibility-option">
                                        <div className="row mt-4">
+                                      
                                           <div className="col-md-4 col-12">
                                              <h4 className="font-size-19">Hyperlink:</h4>
                                           </div>
                                           <div className="col-md-7 col-10">
-                                             <input type="text" ref={headingRef} value={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
+                                             <input type="text" ref={inputRef} value={window.location.origin + '/ShareQuizes/'+allquiz.id} className="form-control" readOnly/>
                                           </div>
                                           <div className="col-md-1 col-2">
-                                             <img onClick={copyToClipboard} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>                                          
+                                             <img onClick={handleCopy} src={window.location.origin + '/assets/img/copy.png'} alt="down" className="img-fluid"/>                                          
                                           </div>
                                        </div>
                                        <div className="row mt-4">
