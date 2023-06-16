@@ -21,7 +21,6 @@ const hideModal3 = () => { setIsOpen3(false);};
 const [numPossibilities, setNumPossibilities] = useState(1);
 
 const navigate = useNavigate();
-const {id} = useParams(); 
 const submitquestion = (values) => {
  const dataArray = values.Possibilities;
 console.log(dataArray);
