@@ -25,7 +25,7 @@ return <div>
                   questionData.input_type === 'checkbox' ? 
                   (
                   questionData.options.map((item, optionIndex) => (
-                  <li key={`option-${optionIndex}`} className="active step_1 rounded-pill bg-question text-start">
+                  <li key={`option-${optionIndex}`} className="step_1 rounded-pill bg-question text-start">
                      <input type="checkbox" id="opt_2" name="stp_2_select_option" />
                      <label>{item}</label>
                   </li>
